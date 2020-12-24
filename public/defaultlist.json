@@ -3,12 +3,13 @@
     "name": "Default Packing List",
     "categories": [
         {
+            "id": 0,
             "order": 0,
             "name": "Personal Hygiene",
             "items": [
                 {
                     "name": "Shampoo",
-                    "key": 0,
+                    "order": 0,
                     "isPurchased": false,
                     "isPacked": false,
                     "quantity": 1,
@@ -16,14 +17,14 @@
                 },
                 {
                     "name": "Deodorant",
-                    "key": 1,
+                    "order": 1,
                     "isPurchased": false,
                     "isPacked": false,
                     "quantity": 1
                 },
                 {
                     "name": "Razor",
-                    "key": 2,
+                    "order": 2,
                     "isPurchased": false,
                     "isPacked": false,
                     "quantity": 1,
@@ -32,12 +33,13 @@
             ]
         },
         {
+            "id": 1,
             "order": 1,
             "name": "Electronics",
             "items": [
                 {
                     "name": "Laptop",
-                    "key": 0,
+                    "order": 0,
                     "isPurchased": true,
                     "isPacked": true,
                     "quantity": 1,
@@ -45,14 +47,14 @@
                 },
                 {
                     "name": "Phone Charger",
-                    "key": 1,
+                    "order": 1,
                     "isPurchased": false,
                     "isPacked": false,
                     "quantity": 1
                 },
                 {
                     "name": "USBs",
-                    "key": 2,
+                    "order": 2,
                     "isPurchased": true,
                     "isPacked": false,
                     "quantity": 1,

@@ -1,9 +1,10 @@
 {
     "id": 0,
     "name": "Default Packing List",
-    "categories": [
+    "renderedColumns": [false, true],
+    "categories": 
+    [
         {
-            "id": 0,
             "order": 0,
             "name": "Personal Hygiene",
             "items": [
@@ -33,7 +34,6 @@
             ]
         },
         {
-            "id": 1,
             "order": 1,
             "name": "Electronics",
             "items": [

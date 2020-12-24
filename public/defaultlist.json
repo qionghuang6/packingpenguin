@@ -1,7 +1,7 @@
 {
     "id": 0,
     "name": "Default Packing List",
-    "renderedColumns": [false, true],
+    "renderPurchased": false,
     "categories": 
     [
         {

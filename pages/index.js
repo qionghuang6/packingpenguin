@@ -9,7 +9,7 @@ export default function Home() {
       </Head>
       <main>
         <h1>Packing Penguin</h1>
-        <h1>Yeet</h1>
+        <h1>Yeet by Coby</h1>
       </main>
     </>
   )

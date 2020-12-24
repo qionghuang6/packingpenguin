@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Checklist from '../components/checklist';
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <main>
         <h1>Packing Penguin</h1>
         <h1>Yeet by Coby</h1>
+        <Checklist/>
       </main>
     </>
   )

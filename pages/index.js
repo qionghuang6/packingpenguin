@@ -3,6 +3,7 @@ import { AppBar } from '@material-ui/core';
 import { createMuiTheme,  } from '@material-ui/core/styles';
 import Checklist from '../components/checklist';
 import list from '../public/defaultList.json'
+import { generateListId, generateUserId } from '../util/generateIds'
 
 const theme = createMuiTheme({
   overrides: {
@@ -23,6 +24,13 @@ const theme = createMuiTheme({
 });
 
 export default function Home() {
+  let userId = null
+  if (typeof window !== "undefined") {
+    if(localStorage.getItem('userId') == null){
+      localStorage.setItem('userId', generateUserId())
+    }
+    userId = localStorage.getItem('userId')
+  }
   return (
     <>
       <Head>
@@ -35,6 +43,7 @@ export default function Home() {
           <h4>A Yeet by Qiong Huang and Coby Sontag</h4>
         </AppBar>
         <Checklist name={list.name} categories={list.categories} renderPurchased={list.renderPurchased}/>
+        <h2>UserId: {userId}</h2>
       </main>
     </>
   )

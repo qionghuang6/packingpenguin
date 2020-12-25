@@ -2,7 +2,6 @@ import { useState } from 'react';
 import Category from './category'
 
 const Checklist = ({name, categories, renderPurchased}) => {
-
     const [checklistName, setChecklistName] = useState(name)
     const [renderPurchasedCheck, setRenderPurchased] = useState(renderPurchased)
 

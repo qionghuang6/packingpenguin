@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <Head>
         <title>Packing Penguin</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="../icon.png" />
       </Head>
       <main>
         <h1>Packing Penguin</h1>

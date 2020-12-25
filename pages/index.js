@@ -12,7 +12,7 @@ export default function Home() {
       <main>
         <h1>Packing Penguin</h1>
         <h1>Yeet by Coby</h1>
-        {/* <Checklist/> */}
+        <Checklist/>
         <Item item={{
                 name: "Shampoo",
                 isPurchased: false,

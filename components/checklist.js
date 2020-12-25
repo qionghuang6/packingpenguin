@@ -16,6 +16,7 @@ const Checklist = () => {
             <Category/>
             <p>Checklist Name: {checklistName}</p>
             <p>Render Purchased: {renderPurchased.toString()}</p>
+            <p>{JSON.stringify(defaultList)}</p>
         </>
     )
 }

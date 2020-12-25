@@ -1,29 +1,26 @@
+import { useState } from "react"
 import { Checkbox, FormControlLabel, FormHelperText} from '@material-ui/core';
 
-const Item = (item, renderPurchased) => {
-    const [name, setName] = React.useState(item.name)
-    const [purchased, setPurchased] = React.useState(item.isPurchased)
-    const [packed, setPacked] = React.useState(item.isPacked)
-    const [quantity, setQuantity] = React.useState(item.quantity)
-    const [notes, setNotes] = React.useState(item.notes);
-
-    const handleChange = (event) => {
-        setChecked({...state, [event.target.name]: event.target.checked});
-    };
-
+const Item = ({item, renderPurchased}) => {
+    const [name, setName] = useState(item.name)
+    const [purchased, setPurchased] = useState(item.isPurchased)
+    const [packed, setPacked] = useState(item.isPacked)
+    const [quantity, setQuantity] = useState(item.quantity)
+    const [notes, setNotes] = useState(item.notes);
+    
     return (
         <div>
             <Checkbox 
                 disabled={!renderPurchased} 
                 checked={purchased} 
-                onChange={(e) => setChecked(e.target.checked)}/>
+                onChange={(e) => setPurchased(e.target.checked)}/>
             <FormControlLabel
                 control={<Checkbox
                     checked={packed}
                     onChange={(e) => setPacked(e.target.checked)}/>}
-                label={name} //add name changing
+                label={name + (quantity==1 ? "" : " x"+quantity)}
             />
-            <FormHelperText>{notes}</FormHelperText> //add updating
+            <FormHelperText>{notes}</FormHelperText>
         </div>
     )
 }

@@ -1,10 +1,10 @@
 import Category from './category'
 
-const Checklist = (props) => {
+const Checklist = ({name, categories, renderPurchased}) => {
     return (
         <>
-            <h1>This is a Checklist Component</h1>
-            <Category></Category>
+            <h1>{name}</h1>
+            {categories.map(c => <Category category={c} renderPurchased={renderPurchased}/>)}
         </>
     )
 }

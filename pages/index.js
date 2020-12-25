@@ -1,28 +1,22 @@
 import Head from 'next/head'
 import { AppBar } from '@material-ui/core';
-import { createMuiTheme,  } from '@material-ui/core/styles';
 import Checklist from '../components/checklist';
 import list from '../public/defaultList.json'
 import { generateListId, generateUserId } from '../util/generateIds'
+import { makeStyles } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
-  overrides: {
-    // Style sheet name ⚛️
-    MuiAppBar: {
-      // Name of the rule
-      text: {
-        // Some CSS
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-        border: 0,
-        color: 'white',
-        height: 48,
-        padding: '0 30px',
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-      },
-    },
+/*const useStyles = makeStyles({
+  headBar: {
+    // Some CSS
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    border: 0,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   },
-});
-
+});*/
+// className={classes.headBar}
 export default function Home() {
   let userId = null
   if (typeof window !== "undefined") {
@@ -31,6 +25,8 @@ export default function Home() {
     }
     userId = localStorage.getItem('userId')
   }
+  //const classes = useStyles();
+
   return (
     <>
       <Head>
@@ -42,8 +38,7 @@ export default function Home() {
           <h1>Packing Penguin</h1>
           <h4>A Yeet by Qiong Huang and Coby Sontag</h4>
         </AppBar>
-        <Checklist name={list.name} categories={list.categories} renderPurchased={list.renderPurchased}/>
-        <h2>UserId: {userId}</h2>
+        <Checklist name={list.name} categories={list.categories} renderPurchased={list.renderPurchased} />
       </main>
     </>
   )

@@ -1,5 +1,17 @@
+<<<<<<< Updated upstream
 import { useState } from "react"
 import { Checkbox, FormControlLabel, FormHelperText} from '@material-ui/core';
+=======
+import { Checkbox, FormControlLabel } from '@material-ui/core';
+import { useState } from 'react'
+
+const Item = (item) => {
+    const [checked, setChecked] = useState(false);
+
+    const handleChange = (event) => {
+        setChecked(event.target.checked);
+      };
+>>>>>>> Stashed changes
 
 const Item = ({item, renderPurchased}) => {
     const [name, setName] = useState(item.name)

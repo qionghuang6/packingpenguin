@@ -11,10 +11,11 @@ const Checklist = ({name, categories, renderPurchased}) => {
             <h1>Checklist: {checklistName}</h1>
             <p>Render Purchased: {renderPurchased.toString()}</p>
 
-            {categories.map(c => 
-                <Category name={c.name} 
-                items={c.items} 
-                renderPurchased={renderPurchasedCheck}/>)}
+            {categories.map(c =>
+                <Category key = {c.id}
+                    name={c.name} 
+                    items={c.items} 
+                    renderPurchased={renderPurchasedCheck}/>)}
         </>
     )
 }

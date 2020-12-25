@@ -2,7 +2,6 @@ import { Checkbox, FormControlLabel, FormHelperText } from '@material-ui/core';
 import { useState } from 'react'
 
 const Item = ({item, renderPurchased}) => {
-    console.log(renderPurchased)
     const [name, setName] = useState(item.name)
     const [purchased, setPurchased] = useState(item.isPurchased)
     const [packed, setPacked] = useState(item.isPacked)

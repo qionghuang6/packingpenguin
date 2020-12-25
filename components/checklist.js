@@ -1,22 +1,20 @@
 import { useState } from 'react';
 import Category from './category'
-import defaultList from '../public/defaultList.json'
 
-const Checklist = () => {
+const Checklist = ({name, categories, renderPurchased}) => {
 
-    const [checklistName, setChecklistName] = useState(defaultList.name)
-    const [renderPurchased, setRenderPurchased] = useState(true)
-    const [categories, setCategories] = useState([])
+    const [checklistName, setChecklistName] = useState(name)
+    const [renderPurchasedCheck, setRenderPurchased] = useState(renderPurchased)
 
     return (
         <>
-            <h1>{checklistName}</h1>
-            {categories.map(c => <Category category={c} renderPurchased={renderPurchased}/>)}
-            <h1>This is a Checklist Component</h1>
-            <Category/>
-            <p>Checklist Name: {checklistName}</p>
+            <h1>Checklist: {checklistName}</h1>
             <p>Render Purchased: {renderPurchased.toString()}</p>
-            <p>{JSON.stringify(defaultList)}</p>
+
+            {categories.map(c => 
+                <Category name={c.name} 
+                items={c.items} 
+                renderPurchased={renderPurchasedCheck}/>)}
         </>
     )
 }

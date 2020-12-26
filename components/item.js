@@ -1,4 +1,4 @@
-import { Checkbox, FormControlLabel, FormHelperText } from '@material-ui/core';
+import { Checkbox, FormControlLabel, FormHelperText, TextField} from '@material-ui/core';
 import { useState } from 'react'
 
 const Item = ({item, renderPurchased}) => {
@@ -10,10 +10,10 @@ const Item = ({item, renderPurchased}) => {
     
     return (
         <div>
-            <Checkbox 
+            {(renderPurchased) ? <Checkbox 
                 disabled={!renderPurchased} 
                 checked={purchased} 
-                onChange={(e) => setPurchased(e.target.checked)}/>
+                onChange={(e) => setPurchased(e.target.checked)}/> : ""}
             <FormControlLabel
                 control={<Checkbox
                     checked={packed}
@@ -23,6 +23,6 @@ const Item = ({item, renderPurchased}) => {
             <FormHelperText>{notes}</FormHelperText>
         </div>
     )
-}
+} //<TextField value={notes} onChange={(e) => setNotes(e.target.value)}/>
 export default Item;
 

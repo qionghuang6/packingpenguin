@@ -1,26 +1,16 @@
-import { connectToDatabase } from "./mongodb";
+const SERVER_URL = 'http://packingpenguin.vercel.app/';
 
-const addUser = async (userId) => {
-    const { db } = await connectToDatabase();
-    const res = await db
-        .collection("users")
-        .insertOne({ userId })
-    return res
-};
-
-const addChecklist = async (userId, checkListId) => {
-    const { db } = await connectToDatabase();
-    const myquery = {userId};
-    const newvalues = {$set: {checkListId}}
-    const res = await db
-        .collection("users")
-        .updateOne(myquery, newvalues, (err, res) => {
-          if (err) throw err;
-        });
-    return res;
+const addUser = (userId) => {
+    console.log(userId);
+    fetch(SERVER_URL + 'api/adduser', {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'text/html',
+        },
+        body: userId,
+    })
 }
 
 export {
     addUser,
-    addChecklist,
 }

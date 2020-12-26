@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState } from 'react'
+import { Checkbox, FormControlLabel } from '@material-ui/core';
 import Category from './category'
 
 const Checklist = ({name, categories, renderPurchased}) => {
@@ -8,7 +9,12 @@ const Checklist = ({name, categories, renderPurchased}) => {
     return (
         <>
             <h1>Checklist: {checklistName}</h1>
-            <p>Render Purchased: {renderPurchased.toString()}</p>
+            <FormControlLabel
+                control={<Checkbox
+                    checked={renderPurchasedCheck}
+                    onChange={(e) => setRenderPurchased(e.target.checked)}/>}
+                label='Show "purchased" column'
+            />
 
             {categories.map(c =>
                 <Category key = {c.id}

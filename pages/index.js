@@ -16,6 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
+
 export default function Home() {
   let userId = null
   if (typeof window !== "undefined") {

@@ -1,12 +1,11 @@
+import { useState } from "react";
 
 const useMongoState = (initVal) => {
-    const [data, setData] = useState()
+    const [data, setData] = useState(initVal)
     const setMongoData = e => {
-        setData//(something)
-        //do database stuff
+        setData(e)
     }
     return [data, setMongoData]
 }
 
 export default useMongoState
-import { useState } from "react";

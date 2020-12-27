@@ -10,4 +10,6 @@ const useMongoState = (initVal) => {
     return [data, setMongoData]
 }
 
-export default useMongoState
+export {
+    useMongoState,
+}

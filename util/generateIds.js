@@ -10,10 +10,10 @@ const generateId = (length) => {
     return idFunc;
 }
 
-const generateUserId = generateId(5);
+const generateUniqueId = generateId(8);
 const generateListId = generateId(6);
 
 export {
-    generateUserId,
+    generateUniqueId,
     generateListId
 }

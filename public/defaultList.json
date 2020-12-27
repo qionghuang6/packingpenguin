@@ -1,17 +1,16 @@
 {
-    "id": "bigboy",
-    "name": "Qiong's Super Duper Packing List",
+    "id": "0",
+    "name": "Untitled Packing List",
     "renderPurchased": true,
     "categories": 
     [
         {
-            "id":0,
-            "order": 0,
+            "id": "a34n2p1c",
             "name": "Personal Hygiene",
             "items": [
                 {
                     "name": "Shampoo",
-                    "order": 0,
+                    "id": "jlkj23nm",
                     "isPurchased": false,
                     "isPacked": false,
                     "quantity": 1,
@@ -19,14 +18,14 @@
                 },
                 {
                     "name": "Deodorant",
-                    "order": 1,
+                    "id": "3ncpe0ma",
                     "isPurchased": false,
                     "isPacked": false,
                     "quantity": 1
                 },
                 {
                     "name": "Razor",
-                    "order": 2,
+                    "id": "2mknm2l",
                     "isPurchased": false,
                     "isPacked": false,
                     "quantity": 1,
@@ -35,13 +34,13 @@
             ]
         },
         {
-            "id":1,
+            "id": "kl2nlbsa",
             "order": 1,
             "name": "Electronics",
             "items": [
                 {
                     "name": "Laptop",
-                    "order": 0,
+                    "id": "21nvne2k",
                     "isPurchased": true,
                     "isPacked": true,
                     "quantity": 1,
@@ -49,14 +48,14 @@
                 },
                 {
                     "name": "Phone Charger",
-                    "order": 1,
+                    "id": "jrk9laj2",
                     "isPurchased": false,
                     "isPacked": false,
                     "quantity": 1
                 },
                 {
                     "name": "USBs",
-                    "order": 2,
+                    "id": "92nlz6va",
                     "isPurchased": true,
                     "isPacked": false,
                     "quantity": 1,

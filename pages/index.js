@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { AppBar } from '@material-ui/core';
 import Checklist from '../components/checklist';
 import list from '../public/defaultList.json'
-import { generateListId, generateUserId } from '../util/generateIds'
+import { generateListId } from '../util/generateIds'
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({

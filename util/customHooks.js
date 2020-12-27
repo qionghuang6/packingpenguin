@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const SERVER_URL = 'http://localhost:3000/';
+const SERVER_URL = 'https://packingpenguin.vercel.app/';
 
 const useMongoState = (initVal) => {
     const [data, setData] = useState(initVal)

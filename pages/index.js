@@ -18,12 +18,12 @@ const useStyles = makeStyles({
 
 
 export default function Home() {
-  let userId = null
+  let checklistId = null
   if (typeof window !== "undefined") {
-    if(localStorage.getItem('userId') == null){
-      localStorage.setItem('userId', generateUserId())
+    if(localStorage.getItem('checklistId') == null){
+      localStorage.setItem('checklistId', generateListId())
     }
-    userId = localStorage.getItem('userId')
+    checklistId = localStorage.getItem('checklistId')
   }
   const classes = useStyles();
 

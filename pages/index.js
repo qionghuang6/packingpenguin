@@ -22,7 +22,7 @@ export default function Home() {
   if (typeof window !== "undefined") {
     if(localStorage.getItem('checklistId') == null){
       localStorage.setItem('checklistId', generateListId())
-    }
+    } //TODO generate default checklist
     checklistId = localStorage.getItem('checklistId')
   }
   const classes = useStyles();

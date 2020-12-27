@@ -4,7 +4,7 @@ import Checklist from '../components/checklist';
 // import list from '../public/defaultList.json'
 import { generateListId } from '../util/generateIds'
 import { makeStyles } from '@material-ui/core/styles';
-import { getChecklist } from '../util/serverMethods'
+import { useChecklist } from '../util/customHooks'
 
 const useStyles = makeStyles({
   headBar: {
@@ -19,18 +19,8 @@ const useStyles = makeStyles({
 
 
 export default function Home() {
-  let checklistId = null
-  if (typeof window !== "undefined") {
-    if(localStorage.getItem('checklistId') == null){
-      localStorage.setItem('checklistId', generateListId())
-    } //TODO generate default checklist //haha done
-    checklistId = localStorage.getItem('checklistId')
-  }
-
-  const list = getChecklist(checklistId)
-  console.log(list)
+  const list = useChecklist()
   const classes = useStyles();
-
   return (
     <>
       <Head>
@@ -42,9 +32,8 @@ export default function Home() {
           <h1>Packing Penguin</h1>
           <h4>A Yeet by Qiong Huang and Coby Sontag</h4>
         </AppBar>
-        <h2>Checklist Id: {checklistId}</h2>
-        {JSON.stringify(list)}
-        {/* <Checklist name={list.name} categories={list.categories} renderPurchased={list.renderPurchased} /> */}
+        {/* <h2>Checklist Id: {checklistId}</h2> */}
+        <Checklist name={list.name} categories={list.categories} renderPurchased={list.renderPurchased} />
       </main>
     </>
   )

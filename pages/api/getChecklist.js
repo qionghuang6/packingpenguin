@@ -1,4 +1,5 @@
 import { connectToDatabase } from "../../util/mongodb";
+import { ObjectID } from 'mongodb'
 
 export default async (req, res) => {
     const checklistId = req.body
@@ -10,7 +11,10 @@ export default async (req, res) => {
             checklists.findOne({ id: "0" }, (err, defaultChecklist) => {
                 const newChecklist = JSON.parse(JSON.stringify(defaultChecklist))
                 newChecklist.id = checklistId;
-                checklists.insertOne(newChecklist)
+                newChecklist._id = new ObjectID();
+                checklists.insertOne(newChecklist, (e, r) => {
+                    if (e) console.log(e);
+                })
                 res.status(200)
                 res.json(newChecklist)
                 }

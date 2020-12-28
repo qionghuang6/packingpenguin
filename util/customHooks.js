@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { generateListId } from "./generateIds"
 
-const SERVER_URL = 'https://packingpenguin.vercel.app/';
+const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 
 const useMongoState = (initVal) => {
     const [data, setData] = useState(initVal)
     //set init
     const setMongoData = e => {
         //e.target.path to update DB
+        console.log(e);
         setData(e)
     }
     return [data, setMongoData]

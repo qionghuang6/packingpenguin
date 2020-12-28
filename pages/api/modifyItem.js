@@ -1,12 +1,13 @@
 import { connectToDatabase } from "../../util/mongodb";
 
 export default async (req, res) => {
-    const notes = req.body
+    const {checkId, catId, itemId, target, targetVal} = req.body
     const { db } = await connectToDatabase();
     const checklists = db.collection("checklists")
-    const query = { id: '3b1b'}
-    const newvalues = { $set: {'categories.$[cat].items.$[item].notes': notes} };
-    const arrFilt = { arrayFilters: [{ 'cat.name': 'Personal Hygiene' }, {'item.name': 'Shampoo'}] };
+    const query = { id: checkId }
+    const targetKey = `categories.$[cat].items.$[item].${target}`
+    const newvalues = { $set: {targetKey: targetVal}};
+    const arrFilt = { arrayFilters: [{ 'cat.id': catId }, {'item.id': itemId}] };
     await checklists.updateOne(query, newvalues, arrFilt);
-    res.end()
+    return res.status(200).end()
   };

@@ -31,7 +31,7 @@ export default function Home() {
           <h4>A Yeet by Qiong Huang and Coby Sontag</h4>
         </AppBar>
         {/* <h2>Checklist Id: {checklistId}</h2> */}
-        <Checklist name={list.name} categories={list.categories} renderPurchased={list.renderPurchased} />
+        <Checklist source={list}/>
       </main>
     </>
   )

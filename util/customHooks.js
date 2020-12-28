@@ -3,12 +3,18 @@ import { generateListId } from "./generateIds"
 
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 
-const useMongoState = (initVal) => {
+const useItemState = (path, target, initVal) => {
     const [data, setData] = useState(initVal)
-    //set init
     const setMongoData = e => {
+        const modificationObj = {
+            checklistId: path[0], 
+            categoryId: path[1], 
+            itemId: path[2], 
+            target,
+            value: e,
+        }
         //e.target.path to update DB
-        console.log(e);
+        console.log(modificationObj);
         setData(e)
     }
     return [data, setMongoData]
@@ -46,6 +52,6 @@ const useChecklist = () => {
 };
 
 export {
-    useMongoState,
+    useItemState,
     useChecklist,
 }

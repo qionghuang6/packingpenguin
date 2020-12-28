@@ -1,12 +1,12 @@
 import { Checkbox, FormControlLabel, FormHelperText, TextField} from '@material-ui/core';
-import { useMongoState } from '../util/customHooks'
+import { useItemState } from '../util/customHooks'
 
-const Item = ({item, renderPurchased}) => {
-    const [name, setName] = useMongoState(item.name)
-    const [purchased, setPurchased] = useMongoState(item.isPurchased)
-    const [packed, setPacked] = useMongoState(item.isPacked)
-    const [quantity, setQuantity] = useMongoState(item.quantity)
-    const [notes, setNotes] = useMongoState(item.notes);
+const Item = ({item, path, renderPurchased}) => {
+    const [name, setName] = useItemState(path, "name", item.name)
+    const [purchased, setPurchased] = useItemState(path, "isPurchased", item.isPurchased)
+    const [packed, setPacked] = useItemState(path, "isPacked", item.isPacked)
+    const [quantity, setQuantity] = useItemState(path, "quantity", item.quantity)
+    const [notes, setNotes] = useItemState(path, "notes", item.notes);
 
     return (
         <div>

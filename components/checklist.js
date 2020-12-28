@@ -2,7 +2,13 @@ import { useState } from 'react'
 import { Checkbox, FormControlLabel } from '@material-ui/core';
 import Category from './category'
 
-const Checklist = ({name, categories, renderPurchased}) => {
+const Checklist = ({source}) => {
+    const {
+        name,
+        categories,
+        id: checklistId,
+        renderPurchased,
+    } = source;
     const [checklistName, setChecklistName] = useState(name)
     const [renderPurchasedCheck, setRenderPurchased] = useState(renderPurchased)
 
@@ -18,6 +24,7 @@ const Checklist = ({name, categories, renderPurchased}) => {
 
             {categories.map(c =>
                 <Category key = {c.id}
+                    path = {[checklistId, c.id]}
                     name={c.name} 
                     items={c.items} 
                     renderPurchased={renderPurchasedCheck}/>)}

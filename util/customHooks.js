@@ -14,15 +14,28 @@ const useItemState = (path, target, initVal) => {
             value: e,
         }
         //e.target.path to update DB
-        console.log(modificationObj);
+        // console.log(modificationObj);
+        async function fetchModifyItem() {
+            const res = await fetch(SERVER_URL + 'api/modifyItem', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(modificationObj),
+            })
+            if (!res.ok) {
+                console.log("HTTP-Error: " + res.status);
+            }
+        }
+        fetchModifyItem();
         setData(e)
     }
     return [data, setMongoData]
 }
 
 const useChecklist = () => {
-    const [checklistId, setChecklistId] = useState("0");
-    const [data, setData] = useState({name: "", categories: [], renderPurchased: false});
+    const [checklistId, setChecklistId] = useState(null);
+    const [data, setData] = useState(null);
     useEffect(() => {
         if (typeof window !== "undefined") {
             if(localStorage.getItem('checklistId') == null){
@@ -45,7 +58,7 @@ const useChecklist = () => {
                 console.log("HTTP-Error: " + res.status);
             }
         }
-        fetchData();
+        if(checklistId) fetchData();
     }, [checklistId]);
     // console.log(data);
     return data;

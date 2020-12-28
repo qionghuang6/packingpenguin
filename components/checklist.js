@@ -3,6 +3,9 @@ import { Checkbox, FormControlLabel } from '@material-ui/core';
 import Category from './category'
 
 const Checklist = ({source}) => {
+    if (!source){
+        return <h1>Loading</h1>
+    }
     const {
         name,
         categories,
@@ -11,10 +14,11 @@ const Checklist = ({source}) => {
     } = source;
     const [checklistName, setChecklistName] = useState(name)
     const [renderPurchasedCheck, setRenderPurchased] = useState(renderPurchased)
-
+    console.log(source);
     return (
         <>
             <h1>Checklist: {checklistName}</h1>
+            <h3>ChecklistId: {checklistId}</h3>
             <FormControlLabel
                 control={<Checkbox
                     checked={renderPurchasedCheck}

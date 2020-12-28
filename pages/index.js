@@ -30,7 +30,6 @@ export default function Home() {
           <h1>Packing Penguin</h1>
           <h4>A Yeet by Qiong Huang and Coby Sontag</h4>
         </AppBar>
-        {/* <h2>Checklist Id: {checklistId}</h2> */}
         <Checklist source={list}/>
       </main>
     </>

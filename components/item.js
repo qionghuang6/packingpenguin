@@ -7,7 +7,7 @@ const Item = ({item, path, renderPurchased}) => {
     const [packed, setPacked] = useItemState(path, "isPacked", item.isPacked)
     const [quantity, setQuantity] = useItemState(path, "quantity", item.quantity)
     const [notes, setNotes] = useItemState(path, "notes", item.notes);
-
+    // console.log([name, purchased, packed])
     return (
         <div>
             {(renderPurchased) ? <Checkbox 

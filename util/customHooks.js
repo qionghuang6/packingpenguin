@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { generateListId } from "./generateIds"
+import { generateListId } from "./utilFunctions"
 
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { generateListId } from "./generateIds"
+import { generateListId } from "./utilFunctions"
 
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 
@@ -7,14 +7,11 @@ const useItemState = (path, target, initVal) => {
     const [data, setData] = useState(initVal)
     const setMongoData = e => {
         const modificationObj = {
-            checklistId: path[0], 
-            categoryId: path[1], 
-            itemId: path[2], 
+            path,
             target,
             value: e,
         }
         //e.target.path to update DB
-        // console.log(modificationObj);
         async function fetchModifyItem() {
             const res = await fetch(SERVER_URL + 'api/modifyItem', {
                 method: 'POST',

@@ -1,7 +1,8 @@
 import { connectToDatabase } from "../../util/mongodb";
 
 export default async (req, res) => {
-    const {checklistId, categoryId, itemId, target, value} = req.body
+    const {path, target, value} = req.body
+    const [checklistId, categoryId, itemId] = path;
     const { db } = await connectToDatabase();
     const checklists = db.collection("checklists");
     const query = { id: checklistId };

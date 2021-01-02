@@ -1,4 +1,4 @@
-import { Checkbox, FormControlLabel, FormHelperText, TextField} from '@material-ui/core';
+import { Checkbox, FormControlLabel, FormHelperText, TextField, InputAdornment, InputBase} from '@material-ui/core';
 import { useItemState } from '../util/customHooks'
 
 const Item = ({item, path, renderPurchased}) => {
@@ -18,11 +18,19 @@ const Item = ({item, path, renderPurchased}) => {
                 control={<Checkbox
                     checked={packed}
                     onChange={(e) => setPacked(e.target.checked)}/>}
-                label={name + (quantity==1 ? "" : " x"+quantity)}
+                    label={<TextField 
+                        InputProps={{ 
+                            disableUnderline: true,
+                            endAdornment: <InputAdornment position="end">{quantity==1 ? "" : " x"+quantity}</InputAdornment>,
+                        }}
+                        style = {{width: "150px"}}
+                        value={name}
+                        onChange={e => setName(e.target.value)}/>}
             />
             <FormHelperText>{notes}</FormHelperText>
         </div>
     )
 } //<TextField value={notes} onChange={(e) => setNotes(e.target.value)}/>
+//name + (quantity==1 ? "" : " x"+quantity)
 export default Item;
 

@@ -1,7 +1,7 @@
-import { Checkbox, FormControlLabel, FormHelperText, TextField} from '@material-ui/core';
-import { useItemState } from '../util/customHooks'
+import { Checkbox, FormControlLabel, FormHelperText, TextField, Button } from '@material-ui/core';
+import { useItemState } from '../util/customHooks';
 
-const Item = ({item, path, renderPurchased}) => {
+const Item = ({item, path, renderPurchased, deleteItem }) => {
     const [name, setName] = useItemState(path, "name", item.name)
     const [purchased, setPurchased] = useItemState(path, "isPurchased", item.isPurchased)
     const [packed, setPacked] = useItemState(path, "isPacked", item.isPacked)
@@ -10,6 +10,7 @@ const Item = ({item, path, renderPurchased}) => {
     // console.log([name, purchased, packed])
     return (
         <div>
+            <p>{JSON.stringify(path)}</p>
             {(renderPurchased) ? <Checkbox 
                 disabled={!renderPurchased} 
                 checked={purchased} 
@@ -21,6 +22,7 @@ const Item = ({item, path, renderPurchased}) => {
                 label={name + (quantity==1 ? "" : " x"+quantity)}
             />
             <FormHelperText>{notes}</FormHelperText>
+            <Button variant="contained" color="primary" onClick={() => deleteItem(path)}>Delete Item</Button>
         </div>
     )
 } //<TextField value={notes} onChange={(e) => setNotes(e.target.value)}/>

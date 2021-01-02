@@ -12,7 +12,6 @@ const useItemState = (path, target, initVal) => {
             value: e,
         }
         //e.target.path to update DB
-        // console.log(modificationObj);
         async function fetchModifyItem() {
             const res = await fetch(SERVER_URL + 'api/modifyItem', {
                 method: 'POST',

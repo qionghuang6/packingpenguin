@@ -7,9 +7,7 @@ const useItemState = (path, target, initVal) => {
     const [data, setData] = useState(initVal)
     const setMongoData = e => {
         const modificationObj = {
-            checklistId: path[0], 
-            categoryId: path[1], 
-            itemId: path[2], 
+            path,
             target,
             value: e,
         }

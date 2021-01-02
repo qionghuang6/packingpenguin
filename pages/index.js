@@ -3,6 +3,7 @@ import { AppBar } from '@material-ui/core';
 import Checklist from '../components/checklist';
 import { makeStyles } from '@material-ui/core/styles';
 import { useChecklist } from '../util/customHooks'
+import { Typography } from '@material-ui/core'
 
 const useStyles = makeStyles({
   headBar: {
@@ -27,8 +28,8 @@ export default function Home() {
       </Head>
       <main>
         <AppBar position="static" className={classes.headBar}>
-          <h1>Packing Penguin</h1>
-          <h4>A Yeet by Qiong Huang and Coby Sontag</h4>
+          <Typography variant='h2'>Packing Penguin</Typography>
+          <Typography variant='h5'>A Yeet by Qiong Huang and Coby Sontag</Typography>
         </AppBar>
         <Checklist source={list}/>
       </main>

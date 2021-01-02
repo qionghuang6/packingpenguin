@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Checkbox, FormControlLabel } from '@material-ui/core';
+import { Checkbox, FormControlLabel, Typography } from '@material-ui/core';
 import Category from './category'
 
 const Checklist = ({source}) => {
@@ -17,8 +17,8 @@ const Checklist = ({source}) => {
     console.log(source);
     return (
         <>
-            <h1>Checklist: {checklistName}</h1>
-            <h3>ChecklistId: {checklistId}</h3>
+            <Typography variant='h3'>Checklist: {checklistName}</Typography>
+            <Typography variant='h5'>ChecklistId: {checklistId}</Typography>
             <FormControlLabel
                 control={<Checkbox
                     checked={renderPurchasedCheck}

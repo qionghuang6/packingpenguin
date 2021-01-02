@@ -14,7 +14,7 @@ const Checklist = ({source}) => {
     } = source;
     const [checklistName, setChecklistName] = useState(name)
     const [renderPurchasedCheck, setRenderPurchased] = useState(renderPurchased)
-    console.log(source);
+    // console.log(source);
     return (
         <Box>
             <Typography variant='h3'>Checklist: {checklistName}</Typography>

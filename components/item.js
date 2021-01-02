@@ -11,7 +11,7 @@ const Item = ({item, path, renderPurchased, deleteItem }) => {
     // console.log([name, purchased, packed])
     return (
         <div>
-            <p>{JSON.stringify(path)}</p>
+            {/* <p>{JSON.stringify(path)}</p> */}
             {(renderPurchased) ? <Checkbox 
                 disabled={!renderPurchased} 
                 checked={purchased} 

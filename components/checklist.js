@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Checkbox, FormControlLabel, Typography, Box, Button } from '@material-ui/core';
-import { changeCategoryExistence } from '../util/utilFunctions'
+import { changeCategoryExistence, generateUniqueId } from '../util/utilFunctions'
 import Category from './category'
 
 const Checklist = ({source}) => {
@@ -19,7 +19,7 @@ const Checklist = ({source}) => {
     const [categories, setCategories] = useState(givenCategories);
 
     const addCategory = async () => {
-        const categoryPath = path.concat([generateUniqueId()])
+        const categoryPath = [checklistId, generateUniqueId()];
         const newItem = await changeCategoryExistence(categoryPath, true);
         setCategories(categories.concat([newItem]))
     }

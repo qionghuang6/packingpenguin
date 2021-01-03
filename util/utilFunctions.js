@@ -38,8 +38,30 @@ const changeItemExistence = async (path, push) => {
     return item;
 }
 
+const changeCategoryExistence = async (path, push) => {
+    const defaultCategory = {
+        name: "New Category",
+        id: path[1],
+        items: [],
+    }
+    const category = push ? defaultCategory: null;
+    console.log({push, category, path});
+    const res = await fetch(SERVER_URL + 'api/addRemoveCategory', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({push, category, path}),
+    })
+    if (!res.ok) {
+        console.log("HTTP-Error: " + res.status);
+    }
+    return defaultCategory;
+}
+
 export {
     generateUniqueId,
     generateListId,
     changeItemExistence,
+    changeCategoryExistence,
 }

@@ -3,7 +3,7 @@ import { Typography, Button } from '@material-ui/core';
 import Item from './item'
 import { changeItemExistence, generateUniqueId } from '../util/utilFunctions'
 
-const Category = ({path, name, items: givenItems, renderPurchased}) => {
+const Category = ({path, name, items: givenItems, renderPurchased, delCategory}) => {
     const [items, setItems] = useState(givenItems);
 
     const addItem = async () => {
@@ -20,6 +20,7 @@ const Category = ({path, name, items: givenItems, renderPurchased}) => {
     return (
         <>
             <Typography variant='h5'>{name}</Typography>
+            <Button variant="contained" color="secondary" onClick={() => delCategory(path)}>Delete {name} category</Button>
             {items.map(i => <Item key={i.id} path={path.concat([i.id])} item={i} renderPurchased={renderPurchased} deleteItem={deleteItem}/>)}
             <Button variant="contained" color="secondary" onClick={addItem}>Add Item</Button>
         </>

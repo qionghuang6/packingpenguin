@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { Typography, Button } from '@material-ui/core';
+import { Typography, Button, TextField } from '@material-ui/core';
 import Item from './item'
 import { changeItemExistence, generateUniqueId } from '../util/utilFunctions'
+import { usePropertyState } from '../util/customHooks'
 
-const Category = ({path, name, items: givenItems, renderPurchased, delCategory}) => {
+const Category = ({path, name: givenName, items: givenItems, renderPurchased, delCategory}) => {
     const [items, setItems] = useState(givenItems);
+    const [name, setName] = usePropertyState(path, "name", givenName)
 
     const addItem = async () => {
         const itemPath = path.concat([generateUniqueId()])
@@ -20,6 +22,10 @@ const Category = ({path, name, items: givenItems, renderPurchased, delCategory})
     return (
         <>
             <Typography variant='h5'>{name}</Typography>
+            <TextField 
+                        style = {{width: "200px"}}
+                        value={name}
+                        onChange={e => setName(e.target.value)}/>
             <Button variant="contained" color="secondary" onClick={() => delCategory(path)}>Delete {name} category</Button>
             {items.map(i => <Item key={i.id} path={path.concat([i.id])} item={i} renderPurchased={renderPurchased} deleteItem={deleteItem}/>)}
             <Button variant="contained" color="secondary" onClick={addItem}>Add Item</Button>

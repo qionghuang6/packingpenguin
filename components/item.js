@@ -1,13 +1,13 @@
 import { Checkbox, FormControlLabel, FormHelperText, TextField, Button, InputAdornment, InputBase} from '@material-ui/core';
-import { useItemState } from '../util/customHooks'
+import { usePropertyState } from '../util/customHooks'
 
 
 const Item = ({item, path, renderPurchased, deleteItem }) => {
-    const [name, setName] = useItemState(path, "name", item.name)
-    const [purchased, setPurchased] = useItemState(path, "isPurchased", item.isPurchased)
-    const [packed, setPacked] = useItemState(path, "isPacked", item.isPacked)
-    const [quantity, setQuantity] = useItemState(path, "quantity", item.quantity)
-    const [notes, setNotes] = useItemState(path, "notes", item.notes);
+    const [name, setName] = usePropertyState(path, "name", item.name)
+    const [purchased, setPurchased] = usePropertyState(path, "isPurchased", item.isPurchased)
+    const [packed, setPacked] = usePropertyState(path, "isPacked", item.isPacked)
+    const [quantity, setQuantity] = usePropertyState(path, "quantity", item.quantity)
+    const [notes, setNotes] = usePropertyState(path, "notes", item.notes);
     // console.log([name, purchased, packed])
     return (
         <div>

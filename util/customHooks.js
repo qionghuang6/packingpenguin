@@ -3,7 +3,7 @@ import { generateListId } from "./utilFunctions"
 
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 
-const useItemState = (path, target, initVal) => {
+const usePropertyState = (path, target, initVal) => {
     const [data, setData] = useState(initVal)
     const setMongoData = e => {
         const modificationObj = {
@@ -12,8 +12,20 @@ const useItemState = (path, target, initVal) => {
             value: e,
         }
         //e.target.path to update DB
+        let route;
+        switch (path.length) {
+            case 3:
+                route = 'api/modifyItem';
+                break;
+            case 2:
+                route = 'api/modifyCategory'
+                break;
+            default:
+                route = ''
+        }
+        console.log(route);
         async function fetchModifyItem() {
-            const res = await fetch(SERVER_URL + 'api/modifyItem', {
+            const res = await fetch(SERVER_URL + route, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -62,6 +74,6 @@ const useChecklist = () => {
 };
 
 export {
-    useItemState,
+    usePropertyState,
     useChecklist,
 }

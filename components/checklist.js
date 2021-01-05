@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Checkbox, FormControlLabel, Typography, Box, Button, TextField, Grid } from '@material-ui/core';
 import { changeCategoryExistence, generateUniqueId } from '../util/utilFunctions'
 import Category from './category'
-import { usePropertyState } from '../util/customHooks';
+import { useStickyMongoState } from '../util/customHooks';
 
 const Checklist = ({source}) => {
     if (!source){
@@ -14,9 +14,9 @@ const Checklist = ({source}) => {
         id: checklistId,
         renderPurchased,
     } = source;
-
-    const [checklistName, setChecklistName] = usePropertyState([checklistId], "name", name);
-    const [renderPurchasedCheck, setRenderPurchased] = usePropertyState([checklistId], "renderPurchased", renderPurchased);
+    //we use sticky states but update the server anyway for checklist wide changes
+    const [checklistName, setChecklistName, setServerChecklistName] = useStickyMongoState([checklistId], "name", name);
+    const [renderPurchasedCheck, setRenderPurchased, setServerRenderPurchased] = useStickyMongoState([checklistId], "renderPurchased", renderPurchased);
     const [categories, setCategories] = useState(givenCategories);
 
     const addCategory = async () => {
@@ -36,12 +36,12 @@ const Checklist = ({source}) => {
                         style = {{width: "600px"}}
                         value={checklistName}
                         inputProps={{style: {fontSize: 40}}} 
-                        onChange={e => setChecklistName(e.target.value)}/>
+                        onChange={e => setServerChecklistName(e.target.value)}/>
             <Typography variant='h5'>ChecklistId: {checklistId}</Typography>
             <FormControlLabel
                 control={<Checkbox
                     checked={renderPurchasedCheck}
-                    onChange={(e) => setRenderPurchased(e.target.checked)}/>}
+                    onChange={(e) => setServerRenderPurchased(e.target.checked)}/>}
                 label='Show "purchased" column'
             />
             <Grid container spacing={3}>
@@ -56,7 +56,11 @@ const Checklist = ({source}) => {
                     />)}
             </Grid>
             <br/>
-            <Button variant="contained" color="secondary" onClick={addCategory}>Add New Category</Button>
+            <Button
+                variant="contained"
+                color="secondary"
+                onClick={addCategory}>Add New Category
+            </Button>
         </Box>
     )
 }

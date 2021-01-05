@@ -27,7 +27,7 @@ const theme = createMuiTheme({
     MuiInputBase: {
       root: {
         '&:hover': {
-          background:'#eefcff'
+          background: '#eefcff33', //'rgba(238, 252, 255, 0.3)'
         },
       },
     },

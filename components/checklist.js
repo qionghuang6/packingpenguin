@@ -55,7 +55,11 @@ const Checklist = ({source}) => {
                     />)}
             </Grid>
             <br/>
-            <Button variant="contained" color="secondary" onClick={addCategory}>Add New Category</Button>
+            <Button
+                variant="contained"
+                color="secondary"
+                onClick={addCategory}>Add New Category
+            </Button>
         </Box>
     )
 }

@@ -25,9 +25,10 @@ const Item = ({item, path, renderPurchased, deleteItem }) => {
                         InputProps={{
                             endAdornment: <InputAdornment position="end">{quantity==1 ? "" : " x"+quantity}</InputAdornment>,
                         }}
-                        style = {{width: 12*name.length + (quantity==1? 0:24)}}
-                        value={name}
-                        onChange={e => setName(e.target.value)}/>}
+                        style = {{width: name.length+2+(quantity==1? 0:2)+"ch" }}
+                        value = {name}
+                        onChange={e => setName(e.target.value)}
+                        />}
             />
             <Button onClick={() => deleteItem(path)}><DeleteTwoTone/></Button>
             <FormHelperText>{notes}</FormHelperText>

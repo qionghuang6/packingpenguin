@@ -24,7 +24,7 @@ const Category = ({path, name: givenName, items: givenItems, renderPurchased, de
         <>
             <Typography variant='h5'>{name}</Typography>
             <TextField 
-                        style = {{width: "200px"}}
+                        style = {{width: name.length+4+"ch" }}
                         value={name}
                         onChange={e => setName(e.target.value)}/>
             <Button onClick={() => delCategory(path)}><Delete/></Button>

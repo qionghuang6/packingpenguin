@@ -12,7 +12,7 @@ const usePropertyState = (path, target, initVal) => {
             target,
             value: e,
         }
-        async function fetchModifyItem() {
+        const fetchModifyItem = async () => {
             const res = await fetch(route, {
                 method: 'POST',
                 headers: {

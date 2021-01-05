@@ -5,27 +5,15 @@ const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 
 const usePropertyState = (path, target, initVal) => {
     const [data, setData] = useState(initVal)
+    const route = SERVER_URL + 'api/modifyProperty';
     const setMongoData = e => {
         const modificationObj = {
             path,
             target,
             value: e,
         }
-        //e.target.path to update DB
-        let route;
-        switch (path.length) {
-            case 3:
-                route = 'api/modifyItem';
-                break;
-            case 2:
-                route = 'api/modifyCategory'
-                break;
-            default:
-                route = ''
-        }
-        console.log(route);
         async function fetchModifyItem() {
-            const res = await fetch(SERVER_URL + route, {
+            const res = await fetch(route, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

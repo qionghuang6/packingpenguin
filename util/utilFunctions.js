@@ -45,7 +45,6 @@ const changeCategoryExistence = async (path, push) => {
         items: [],
     }
     const category = push ? defaultCategory: null;
-    console.log({push, category, path});
     const res = await fetch(SERVER_URL + 'api/addRemoveCategory', {
         method: 'POST',
         headers: {

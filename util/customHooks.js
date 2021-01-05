@@ -3,8 +3,8 @@ import { generateListId } from "./utilFunctions"
 
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 
-const useStickyMongoState = (path, target) => {
-    const[state, setStickyState] = useState()
+const useStickyMongoState = (path, target, initVal) => {
+    const[state, setStickyState] = useState(initVal)
 
     const setMongoState = newVal => {
         async function fetchModifyItem() {
@@ -28,6 +28,7 @@ const useStickyMongoState = (path, target) => {
 
 const usePropertyState = (path, target, initVal) => {
     const [data, setData] = useState(initVal)
+    //console.log(data)
     const route = SERVER_URL + 'api/modifyProperty';
     const setMongoData = e => {
         const modificationObj = {
@@ -87,4 +88,5 @@ const useChecklist = () => {
 export {
     usePropertyState,
     useChecklist,
+    useStickyMongoState
 }

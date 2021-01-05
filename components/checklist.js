@@ -6,7 +6,7 @@ import { usePropertyState } from '../util/customHooks';
 
 const Checklist = ({source}) => {
     if (!source){
-        return <h1>Loading</h1>
+        return <h1>Loading</h1> 
     }
     const {
         name,
@@ -49,7 +49,8 @@ const Checklist = ({source}) => {
                 <Category key = {c.id}
                     path = {[checklistId, c.id]}
                     name={c.name} 
-                    items={c.items} 
+                    items={c.items}
+                    color={c.color} 
                     renderPurchased={renderPurchasedCheck}
                     delCategory={delCategory}
                     />)}

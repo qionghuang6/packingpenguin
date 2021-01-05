@@ -17,14 +17,12 @@ const Item = ({item, path, renderPurchased, deleteItem }) => {
             {(renderPurchased) ? <Checkbox 
                 disabled={!renderPurchased} 
                 checked={purchased} 
-                onChange={(e) => setPurchased(e.target.checked)}
-                onBlur={e => setServerPurchased(e.target.checked)}
+                onChange={(e) => setServerPurchased(e.target.checked)}
             /> : ""}
             <FormControlLabel
                 control={<Checkbox
                     checked={packed}
-                    onChange={(e) => setPacked(e.target.checked)}
-                    onBlur={e => setServerPacked(e.target.checked)}
+                    onChange={(e) => setServerPacked(e.target.checked)}
                     />}
                     label={<TextField 
                         InputProps={{

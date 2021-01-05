@@ -22,11 +22,10 @@ const Item = ({item, path, renderPurchased, deleteItem }) => {
                     checked={packed}
                     onChange={(e) => setPacked(e.target.checked)}/>}
                     label={<TextField 
-                        InputProps={{ 
-                            disableUnderline: true,
+                        InputProps={{
                             endAdornment: <InputAdornment position="end">{quantity==1 ? "" : " x"+quantity}</InputAdornment>,
                         }}
-                        style = {{width: "150px"}}
+                        style = {{width: 12*name.length + (quantity==1? 0:24)}}
                         value={name}
                         onChange={e => setName(e.target.value)}/>}
             />

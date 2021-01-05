@@ -32,6 +32,11 @@ const theme = createMuiTheme({
       },
     },
   },
+  props: {
+    MuiInput: {
+      disableUnderline: true
+    },
+  },
 });
 
 export default theme;

@@ -3,6 +3,7 @@ import { Typography, Button, TextField } from '@material-ui/core';
 import Item from './item'
 import { changeItemExistence, generateUniqueId } from '../util/utilFunctions'
 import { usePropertyState } from '../util/customHooks'
+import { Delete } from '@material-ui/icons';
 
 const Category = ({path, name: givenName, items: givenItems, renderPurchased, delCategory}) => {
     const [items, setItems] = useState(givenItems);
@@ -26,7 +27,7 @@ const Category = ({path, name: givenName, items: givenItems, renderPurchased, de
                         style = {{width: "200px"}}
                         value={name}
                         onChange={e => setName(e.target.value)}/>
-            <Button variant="contained" color="secondary" onClick={() => delCategory(path)}>Delete {name} category</Button>
+            <Button onClick={() => delCategory(path)}><Delete/></Button>
             {items.map(i => <Item key={i.id} path={path.concat([i.id])} item={i} renderPurchased={renderPurchased} deleteItem={deleteItem}/>)}
             <Button variant="contained" color="secondary" onClick={addItem}>Add Item</Button>
         </>

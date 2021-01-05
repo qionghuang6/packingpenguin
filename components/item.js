@@ -1,5 +1,6 @@
 import { Checkbox, FormControlLabel, FormHelperText, TextField, Button, InputAdornment, InputBase} from '@material-ui/core';
 import { usePropertyState } from '../util/customHooks'
+import { DeleteTwoTone } from '@material-ui/icons'
 
 
 const Item = ({item, path, renderPurchased, deleteItem }) => {
@@ -28,8 +29,8 @@ const Item = ({item, path, renderPurchased, deleteItem }) => {
                         value={name}
                         onChange={e => setName(e.target.value)}/>}
             />
+            <Button onClick={() => deleteItem(path)}><DeleteTwoTone/></Button>
             <FormHelperText>{notes}</FormHelperText>
-            <Button variant="contained" color="primary" onClick={() => deleteItem(path)}>Delete Item</Button>
         </div>
     )
 } //<TextField value={notes} onChange={(e) => setNotes(e.target.value)}/>

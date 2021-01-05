@@ -1,13 +1,17 @@
 import { useState } from 'react';
-import { Typography, Button, TextField } from '@material-ui/core';
+import { Box, Button, TextField, Grid } from '@material-ui/core';
 import Item from './item'
 import { changeItemExistence, generateUniqueId } from '../util/utilFunctions'
 import { usePropertyState } from '../util/customHooks'
 import { Delete } from '@material-ui/icons';
 
+const PASTELS = ['#CCD4BF', '#E7CBA9', '#EEBAB2', '#A1CDCE', '#FFCCF9', 
+                '#e8d6cf', '#F6ecf5', '#f6f6EB', '#C7CEEA', '#C4FAF8'];
+
 const Category = ({path, name: givenName, items: givenItems, renderPurchased, delCategory}) => {
     const [items, setItems] = useState(givenItems);
-    const [name, setName] = usePropertyState(path, "name", givenName)
+    const [name, setName] = usePropertyState(path, "name", givenName);
+    const [bgcolor, setBgColor] = useState(PASTELS[Math.floor(Math.random()*PASTELS.length)])
 
     const addItem = async () => {
         const itemPath = path.concat([generateUniqueId()])
@@ -21,16 +25,18 @@ const Category = ({path, name: givenName, items: givenItems, renderPurchased, de
     }
 
     return (
-        <>
-            <Typography variant='h5'>{name}</Typography>
-            <TextField 
-                        style = {{width: name.length+4+"ch" }}
-                        value={name}
-                        onChange={e => setName(e.target.value)}/>
-            <Button onClick={() => delCategory(path)}><Delete/></Button>
-            {items.map(i => <Item key={i.id} path={path.concat([i.id])} item={i} renderPurchased={renderPurchased} deleteItem={deleteItem}/>)}
-            <Button variant="contained" color="secondary" onClick={addItem}>Add Item</Button>
-        </>
+        <Grid item xs={12} sm={6} lg={4} xl={3} key={path[1]}>
+            <Box m={1} p={1} bgcolor={bgcolor}>
+                <TextField 
+                            inputProps={{style: {fontSize: 24, width: name.length+ 2+"ch"}}} 
+                            // style = {{ }}
+                            value={name}
+                            onChange={e => setName(e.target.value)}/>
+                <Button onClick={() => delCategory(path)}><Delete/></Button>
+                {items.map(i => <Item key={i.id} path={path.concat([i.id])} item={i} renderPurchased={renderPurchased} deleteItem={deleteItem}/>)}
+                <Button variant="contained" color="secondary" onClick={addItem}>Add Item</Button>
+            </Box>
+        </Grid>
     )
 }
 export default Category;

@@ -26,8 +26,8 @@ const Category = ({path, name: givenName, items: givenItems, renderPurchased, de
     return (
         <Box m={1} p={1} bgcolor={PASTELS[Math.floor(Math.random()*PASTELS.length)]}>
             <TextField 
-                        style = {{width: "300px"}}
                         inputProps={{style: {fontSize: 24}}} 
+                        style = {{width: name.length+4+"ch" }}
                         value={name}
                         onChange={e => setName(e.target.value)}/>
             <Button onClick={() => delCategory(path)}><Delete/></Button>

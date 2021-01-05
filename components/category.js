@@ -10,7 +10,8 @@ const PASTELS = ['#CCD4BF', '#E7CBA9', '#EEBAB2', '#A1CDCE', '#FFCCF9',
 
 const Category = ({path, name: givenName, items: givenItems, renderPurchased, delCategory}) => {
     const [items, setItems] = useState(givenItems);
-    const [name, setName] = usePropertyState(path, "name", givenName)
+    const [name, setName] = usePropertyState(path, "name", givenName);
+    const [bgcolor, setBgColor] = useState(PASTELS[Math.floor(Math.random()*PASTELS.length)])
 
     const addItem = async () => {
         const itemPath = path.concat([generateUniqueId()])
@@ -25,10 +26,10 @@ const Category = ({path, name: givenName, items: givenItems, renderPurchased, de
 
     return (
         <Grid item xs={12} sm={6} lg={4} xl={3} key={path[1]}>
-            <Box m={1} p={1} bgcolor={PASTELS[Math.floor(Math.random()*PASTELS.length)]}>
+            <Box m={1} p={1} bgcolor={bgcolor}>
                 <TextField 
-                            inputProps={{style: {fontSize: 24}}} 
-                            style = {{width: name.length+4+"ch" }}
+                            inputProps={{style: {fontSize: 24, width: name.length+ 2+"ch"}}} 
+                            // style = {{ }}
                             value={name}
                             onChange={e => setName(e.target.value)}/>
                 <Button onClick={() => delCategory(path)}><Delete/></Button>

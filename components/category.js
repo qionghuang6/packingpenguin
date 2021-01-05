@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Button, TextField } from '@material-ui/core';
+import { Box, Button, TextField, Grid } from '@material-ui/core';
 import Item from './item'
 import { changeItemExistence, generateUniqueId } from '../util/utilFunctions'
 import { usePropertyState } from '../util/customHooks'
@@ -24,16 +24,18 @@ const Category = ({path, name: givenName, items: givenItems, renderPurchased, de
     }
 
     return (
-        <Box m={1} p={1} bgcolor={PASTELS[Math.floor(Math.random()*PASTELS.length)]}>
-            <TextField 
-                        inputProps={{style: {fontSize: 24}}} 
-                        style = {{width: name.length+4+"ch" }}
-                        value={name}
-                        onChange={e => setName(e.target.value)}/>
-            <Button onClick={() => delCategory(path)}><Delete/></Button>
-            {items.map(i => <Item key={i.id} path={path.concat([i.id])} item={i} renderPurchased={renderPurchased} deleteItem={deleteItem}/>)}
-            <Button variant="contained" color="secondary" onClick={addItem}>Add Item</Button>
-        </Box>
+        <Grid item xs={12} sm={6} lg={4} xl={3} key={path[1]}>
+            <Box m={1} p={1} bgcolor={PASTELS[Math.floor(Math.random()*PASTELS.length)]}>
+                <TextField 
+                            inputProps={{style: {fontSize: 24}}} 
+                            style = {{width: name.length+4+"ch" }}
+                            value={name}
+                            onChange={e => setName(e.target.value)}/>
+                <Button onClick={() => delCategory(path)}><Delete/></Button>
+                {items.map(i => <Item key={i.id} path={path.concat([i.id])} item={i} renderPurchased={renderPurchased} deleteItem={deleteItem}/>)}
+                <Button variant="contained" color="secondary" onClick={addItem}>Add Item</Button>
+            </Box>
+        </Grid>
     )
 }
 export default Category;

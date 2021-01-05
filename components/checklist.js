@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Checkbox, FormControlLabel, Typography, Box, Button, TextField } from '@material-ui/core';
+import { Checkbox, FormControlLabel, Typography, Box, Button, TextField, Grid } from '@material-ui/core';
 import { changeCategoryExistence, generateUniqueId } from '../util/utilFunctions'
 import Category from './category'
 import { usePropertyState } from '../util/customHooks';
@@ -44,6 +44,7 @@ const Checklist = ({source}) => {
                     onChange={(e) => setRenderPurchased(e.target.checked)}/>}
                 label='Show "purchased" column'
             />
+            <Grid container spacing={3}>
             {categories.map(c =>
                 <Category key = {c.id}
                     path = {[checklistId, c.id]}
@@ -52,6 +53,7 @@ const Checklist = ({source}) => {
                     renderPurchased={renderPurchasedCheck}
                     delCategory={delCategory}
                     />)}
+            </Grid>
             <br/>
             <Button variant="contained" color="secondary" onClick={addCategory}>Add New Category</Button>
         </Box>

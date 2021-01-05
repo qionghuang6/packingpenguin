@@ -23,6 +23,15 @@ const theme = createMuiTheme({
       default: '#fff',
     },
   },
+  overrides: {
+    MuiInputBase: {
+      root: {
+        '&:hover': {
+          background:'#eefcff'
+        },
+      },
+    },
+  },
 });
 
 export default theme;

@@ -3,6 +3,29 @@ import { generateListId } from "./utilFunctions"
 
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 
+const useStickyMongoState = (path, target) => {
+    const[state, setStickyState] = useState()
+
+    const setMongoState = newVal => {
+        async function fetchModifyItem() {
+            const res = await fetch(SERVER_URL + 'api/modifyProperty', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({path, target, value:newVal}),
+            })
+            if (!res.ok) {
+                console.log("HTTP-Error: " + res.status);
+            }
+        }
+        fetchModifyItem();
+        setStickyState(newVal)
+    }
+
+    return [state, setStickyState, setMongoState]
+}
+
 const usePropertyState = (path, target, initVal) => {
     const [data, setData] = useState(initVal)
     const route = SERVER_URL + 'api/modifyProperty';

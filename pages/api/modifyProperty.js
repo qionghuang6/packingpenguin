@@ -4,7 +4,7 @@ export default async (req, res) => {
     const { path, target, value } = req.body
     const { db } = await connectToDatabase();
     const checklists = db.collection("checklists");
-    const [checklistId, categoryId, itemId]     = path;
+    const [checklistId, categoryId, itemId] = path;
     let result;
 
     if (checklistId.length >= 6) {

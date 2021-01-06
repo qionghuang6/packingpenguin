@@ -54,11 +54,11 @@ const usePropertyState = (path, target, initVal) => {
     return [data, setMongoData]
 }
 
-const useChecklist = () => {
-    const [checklistId, setChecklistId] = useState(null);
+const useChecklist = (id = null) => {
+    const [checklistId, setChecklistId] = useState(id);
     const [data, setData] = useState(null);
     useEffect(() => {
-        if (typeof window !== "undefined") {
+        if (typeof window !== "undefined" && !checklistId) {
             if(localStorage.getItem('checklistId') == null){
               localStorage.setItem('checklistId', generateListId())
             }

@@ -32,3 +32,11 @@ export default async (req, res) => {
     }
     return res.status(405).end('Error modifying property');
 };
+
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: '2kb',
+        },
+    },
+}

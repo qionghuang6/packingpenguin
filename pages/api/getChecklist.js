@@ -33,6 +33,8 @@ export default async (req, res) => {
 
 export const config = {
     api: {
-        externalResolver: true,
+        bodyParser: {
+            sizeLimit: '20kb',
+        },
     },
 }

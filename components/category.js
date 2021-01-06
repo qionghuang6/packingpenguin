@@ -27,7 +27,7 @@ const Category = ({path, name: givenName, items: givenItems, renderPurchased, de
     }
     //console.log(items)
     return (
-        <Grid item xs={12} sm={6} lg={4} xl={3} key={path[1]}>
+        <Grid item xs={12} md={6} lg={4} xl={3} key={path[1]}>
             <Box m={1} p={1} bgcolor={bgColor}>
                 <TextField 
                             inputProps={{style: {fontSize: 24, width: name.length+ 2+"ch"}}} 

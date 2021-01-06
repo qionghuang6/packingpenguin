@@ -33,11 +33,12 @@ const Checklist = ({source}) => {
     return (
         <Box>
             <TextField 
+                        title={"ChecklistId: "+ checklistId}
                         style = {{width: "600px"}}
                         value={checklistName}
                         inputProps={{style: {fontSize: 40}}} 
-                        onChange={e => setServerChecklistName(e.target.value)}/>
-            <Typography variant='h5'>ChecklistId: {checklistId}</Typography>
+                        onChange={e => setServerChecklistName(e.target.value)}
+            /><br></br>
             <FormControlLabel
                 control={<Checkbox
                     checked={renderPurchasedCheck}

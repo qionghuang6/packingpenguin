@@ -12,7 +12,13 @@ export default async (req, res) => {
     const delCategory = {
         $pull: { "categories": {id: categoryId}}
     }
-    const updateDocument = push ? addCategory: delCategory;
-    const result = await checklists.updateOne(query, updateDocument);
-    return res.status(200).end(`Updated ${result.modifiedCount} categories`);
+    let result = null;
+    if (checklistId.length >= 6) {
+        const updateDocument = push ? addCategory: delCategory;
+        result = await checklists.updateOne(query, updateDocument);
+    }
+    if(result){
+        return res.status(200).end(`Updated ${result.modifiedCount} categories`);
+    }
+    return res.status(405).end('Unexpected Database Error')
   };

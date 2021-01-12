@@ -1,13 +1,14 @@
 import { useState } from 'react'
-import { Checkbox, FormControlLabel, Typography, Box, Button, TextField, Grid } from '@material-ui/core';
+import { Checkbox, FormControlLabel, Box, Button, TextField, Grid, Typography } from '@material-ui/core';
 import { changeCategoryExistence, generateUniqueId } from '../util/utilFunctions'
 import Category from './category'
 import Sharelink from './sharelink'
 import { useStickyMongoState } from '../util/customHooks';
+import Loading from './loading.js'
 
 const Checklist = ({source}) => {
-    if (!source){
-        return <h1>Loading</h1> 
+    if (!source) {
+        return <Loading/>
     }
     const {
         name,

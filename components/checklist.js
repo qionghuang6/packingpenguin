@@ -38,7 +38,9 @@ const Checklist = ({source}) => {
                         value={checklistName}
                         inputProps={{style: {fontSize: 40}}} 
                         onChange={e => setServerChecklistName(e.target.value)}
-            /><br></br>
+            />
+            <Typography>{checklistId}</Typography>
+            <br></br>
             <FormControlLabel
                 control={<Checkbox
                     checked={renderPurchasedCheck}

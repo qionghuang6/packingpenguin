@@ -54,17 +54,10 @@ const usePropertyState = (path, target, initVal) => {
     return [data, setMongoData]
 }
 
-const useChecklist = (id = null) => {
-    const [checklistId, setChecklistId] = useState(id);
+const useChecklist = (checklistId) => {
+    console.log('ID:', checklistId)
     const [data, setData] = useState(null);
     useEffect(() => {
-        if (typeof window !== "undefined" && !checklistId) {
-            if(localStorage.getItem('checklistId') == null){
-              localStorage.setItem('checklistId', generateListId())
-            }
-            setChecklistId(localStorage.getItem('checklistId'))
-            console.log('SET CHECKLIST ID')
-        }
         async function fetchData() {
             const res = await fetch(SERVER_URL + 'api/getChecklist', {
                 method: 'POST',

@@ -4,8 +4,8 @@ import Skeleton from 'react-loading-skeleton'
 const Loading = () => {
     const skeletonGrid = [];
     for (let index = 0; index < 6; index++) {
-        skeletonGrid.push(<Grid item xs={12} md={6} lg={4} xl={3}>
-            <Skeleton height={25} count={10} key={index}/>
+        skeletonGrid.push(<Grid item xs={12} md={6} lg={4} xl={3} key={index}>
+            <Skeleton height={25} count={10}/>
         </Grid> )
     }
     return (

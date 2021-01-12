@@ -33,7 +33,7 @@ const Checklist = ({source}) => {
     }
     // console.log(source);
     return (
-        <Box m={1}>
+        <Box m={2}>
             <Grid container justify="space-between">
                 <Grid item>
                     <TextField 

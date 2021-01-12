@@ -35,7 +35,7 @@ const Category = ({path, name: givenName, items: givenItems, renderPurchased, de
                 {items.map(i => <Item key={i.id} path={path.concat([i.id])} item={i} renderPurchased={renderPurchased} deleteItem={deleteItem}/>)}
                 <Button variant="contained" color="secondary" onClick={addItem}>Add Item</Button>
                 <Button variant ="contained"
-                        onClick={() => setServerBgColor(PASTELS[Math.floor(Math.random()*PASTELS.length)])}>
+                        onClick={() => setServerBgColor(getPastelColor())}>
                     reload color
                 </Button>
             </Box>

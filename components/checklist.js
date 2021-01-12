@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Checkbox, FormControlLabel, Typography, Box, Button, TextField, Grid } from '@material-ui/core';
 import { changeCategoryExistence, generateUniqueId } from '../util/utilFunctions'
 import Category from './category'
+import Sharelink from './sharelink'
 import { useStickyMongoState } from '../util/customHooks';
 
 const Checklist = ({source}) => {
@@ -31,7 +32,7 @@ const Checklist = ({source}) => {
     }
     // console.log(source);
     return (
-        <Box>
+        <Box m={1}>
             <TextField 
                         title={"ChecklistId: "+ checklistId}
                         style = {{width: "600px"}}
@@ -39,7 +40,7 @@ const Checklist = ({source}) => {
                         inputProps={{style: {fontSize: 40}}} 
                         onChange={e => setServerChecklistName(e.target.value)}
             />
-            <Typography>{checklistId}</Typography>
+            <Sharelink checklistId={checklistId}/>
             <br></br>
             <FormControlLabel
                 control={<Checkbox

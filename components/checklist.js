@@ -33,25 +33,26 @@ const Checklist = ({source}) => {
     // console.log(source);
     return (
         <Box m={1}>
-            <Box display="flex">
-                <Box flexGrow={1}>
+            <Grid container justify="space-between">
+                <Grid item>
                     <TextField 
                                 title={"ChecklistId: "+ checklistId}
-                                style = {{width: "600px"}}
+                                multiline
+                                rowsMax={4}
                                 value={checklistName}
-                                inputProps={{style: {fontSize: 40}}} 
+                                inputProps={{style: {fontSize: 36, lineHeight: "100%"}}} 
                                 onChange={e => setServerChecklistName(e.target.value)}
                     />
-                </Box>
-                <Sharelink checklistId={checklistId}/>
-            </Box>
+                </Grid>
+                <Grid item><Sharelink checklistId={checklistId}/></Grid>
+            </Grid>
             <FormControlLabel
                 control={<Checkbox
                     checked={renderPurchasedCheck}
                     onChange={(e) => setServerRenderPurchased(e.target.checked)}/>}
                 label='Show "purchased" column'
             />
-            <Grid container spacing={3}>
+            <Grid container justify="flex-start" spacing={3}>
             {categories.map(c =>
                 <Category key = {c.id}
                     path = {[checklistId, c.id]}

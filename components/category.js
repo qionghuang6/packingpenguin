@@ -1,19 +1,16 @@
 import { useState } from 'react';
 import { Box, Button, TextField, Grid } from '@material-ui/core';
 import Item from './item'
-import { changeItemExistence, generateUniqueId } from '../util/utilFunctions'
+import { changeItemExistence, generateUniqueId, getPastelColor } from '../util/utilFunctions'
 import { useStickyMongoState } from '../util/customHooks'
 import { Delete } from '@material-ui/icons';
-
-const PASTELS = ['#CCD4BF', '#E7CBA9', '#EEBAB2', '#A1CDCE', '#FFCCF9', 
-                '#e8d6cf', '#F6ecf5', '#f6f6EB', '#C7CEEA', '#C4FAF8'];
 
 const Category = ({path, name: givenName, items: givenItems, renderPurchased, delCategory, color}) => {
     const [items, setItems] = useState(givenItems);
     const [name, setName, setServerName] = useStickyMongoState(path, "name", givenName);
 
-    const givenColor = color ? color: PASTELS[Math.floor(Math.random()*PASTELS.length)];
-    const [bgColor, setBgColor, setServerBgColor] = useStickyMongoState(path, "color", givenColor);
+    const [bgColor, setBgColor, setServerBgColor] = useStickyMongoState(path, "color", color);
+    if (!bgColor) setServerBgColor(getPastelColor());
 
     const addItem = async () => {
         const itemPath = path.concat([generateUniqueId()])

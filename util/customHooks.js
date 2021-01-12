@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { generateListId } from "./utilFunctions"
 
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 
@@ -55,7 +54,6 @@ const usePropertyState = (path, target, initVal) => {
 }
 
 const useChecklist = (checklistId) => {
-    console.log('ID:', checklistId)
     const [data, setData] = useState(null);
     useEffect(() => {
         async function fetchData() {

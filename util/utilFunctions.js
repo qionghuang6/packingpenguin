@@ -42,6 +42,7 @@ const changeCategoryExistence = async (path, push) => {
     const defaultCategory = {
         name: "New Category",
         id: path[1],
+        color: getPastelColor(),
         items: [],
     }
     const category = push ? defaultCategory: null;
@@ -58,9 +59,17 @@ const changeCategoryExistence = async (path, push) => {
     return defaultCategory;
 }
 
+const PASTELS = ['#CCD4BF', '#E7CBA9', '#EEBAB2', '#A1CDCE', '#FFCCF9', 
+                '#e8d6cf', '#F6ecf5', '#f6f6EB', '#C7CEEA', '#C4FAF8'];
+
+const getPastelColor = () => {
+    return PASTELS[Math.floor(Math.random()*PASTELS.length)]
+}
+
 export {
     generateUniqueId,
     generateListId,
     changeItemExistence,
     changeCategoryExistence,
+    getPastelColor,
 }

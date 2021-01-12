@@ -19,12 +19,12 @@ const useStyles = makeStyles((theme) => ({
 
 const Sharelink = ({checklistId}) =>{
     const classes = useStyles();
-    const shareUrl = SERVER_URL + checklistId;
+    const shareUrl = `${SERVER_URL}${checklistId}`.replace('https://', '').replace('http://', '');
     const [textValue, changeText] = useState(shareUrl);
 
     const copyButton = (
         <Button 
-            component="form" className={classes.iconButton}
+            className={classes.iconButton}
             variant="contained" 
             color="primary"
             onClick={() => {
@@ -36,11 +36,10 @@ const Sharelink = ({checklistId}) =>{
     )
 
     return (
-        <Paper component="form" elevation={0} className={classes.root}>
+        <Paper elevation={0} className={classes.root}>
             <TextField
-                component="form" 
                 label="Share Link for Editing"
-                style = {{width: "50ch"}}
+                style = {{width: "100%", maxWidth: "40ch"}}
                 value={textValue}
                 variant="outlined"
                 margin="dense"

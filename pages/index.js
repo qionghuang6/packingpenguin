@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Checklist from '../components/checklist';
 import { useChecklist } from '../util/customHooks';
 import TopBar from '../components/topbar';
+import { generateListId } from '../util/utilFunctions';
 
 export default function Home() {
   const [checklistId, setChecklistId] = useState(null);

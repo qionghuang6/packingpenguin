@@ -13,7 +13,7 @@ const generateId = (length) => {
 }
 
 const generateUniqueId = generateId(8);
-const generateListId = generateId(6);
+const generateListId = generateId(9);
 
 // push set to true means add item, push set to false means delete item
 const changeItemExistence = async (path, push) => {

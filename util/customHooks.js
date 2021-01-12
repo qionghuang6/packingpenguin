@@ -63,6 +63,7 @@ const useChecklist = (id = null) => {
               localStorage.setItem('checklistId', generateListId())
             }
             setChecklistId(localStorage.getItem('checklistId'))
+            console.log('SET CHECKLIST ID')
         }
         async function fetchData() {
             const res = await fetch(SERVER_URL + 'api/getChecklist', {

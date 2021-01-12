@@ -8,28 +8,25 @@ export default async (req, res) => {
     await checklists.findOne({ id: checklistId }, (err, dbRes) => {
         if (err) {
             console.log(err);
-            res.status(405).end()
+            return res.status(405).end()
         }
-
-        if(dbRes){ 
-            res.status(200).json(dbRes);
+        if (!dbRes){
+            checklists.findOne({ id: "0" }, (err, defaultChecklist) => {
+                const newChecklist = JSON.parse(JSON.stringify(defaultChecklist))
+                newChecklist.id = checklistId;
+                newChecklist._id = new ObjectID();
+                checklists.insertOne(newChecklist, (e, r) => {
+                    if (e) {
+                        console.log(e);
+                        return res.status(405).end();
+                    };
+                })
+                return res.status(200).json(newChecklist);
+                }
+            )
+        } else {
+            return res.status(200).json(dbRes);
         }
-
-        checklists.findOne({ id: "0" }, (err, defaultChecklist) => {
-            const newChecklist = JSON.parse(JSON.stringify(defaultChecklist))
-            
-            newChecklist.id = checklistId;
-            newChecklist._id = new ObjectID();
-            
-            checklists.insertOne(newChecklist, (e, r) => {
-                if (e) {
-                    console.log(e);
-                    res.status(405).end();
-                };
-            })
-
-            res.status(200).json(newChecklist);
-        })
     })
 }
 

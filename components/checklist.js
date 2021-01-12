@@ -33,15 +33,18 @@ const Checklist = ({source}) => {
     // console.log(source);
     return (
         <Box m={1}>
-            <TextField 
-                        title={"ChecklistId: "+ checklistId}
-                        style = {{width: "600px"}}
-                        value={checklistName}
-                        inputProps={{style: {fontSize: 40}}} 
-                        onChange={e => setServerChecklistName(e.target.value)}
-            />
-            <Sharelink checklistId={checklistId}/>
-            <br></br>
+            <Box display="flex">
+                <Box flexGrow={1}>
+                    <TextField 
+                                title={"ChecklistId: "+ checklistId}
+                                style = {{width: "600px"}}
+                                value={checklistName}
+                                inputProps={{style: {fontSize: 40}}} 
+                                onChange={e => setServerChecklistName(e.target.value)}
+                    />
+                </Box>
+                <Sharelink checklistId={checklistId}/>
+            </Box>
             <FormControlLabel
                 control={<Checkbox
                     checked={renderPurchasedCheck}

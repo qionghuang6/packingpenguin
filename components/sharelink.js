@@ -5,7 +5,7 @@ import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     root: {
       padding: '2px 4px',
       display: 'flex',
@@ -39,7 +39,7 @@ const Sharelink = ({checklistId}) =>{
         <Paper elevation={0} className={classes.root}>
             <TextField
                 label="Share Link for Editing"
-                style = {{width: "100%", maxWidth: "40ch"}}
+                style = {{width: "100%", maxWidth: "36ch"}}
                 value={textValue}
                 variant="outlined"
                 margin="dense"

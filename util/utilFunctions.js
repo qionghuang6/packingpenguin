@@ -18,7 +18,7 @@ const generateListId = generateId(9);
 // push set to true means add item, push set to false means delete item
 const changeItemExistence = async (path, push) => {
     const defaultItem = {
-        name: "New Item",
+        name: "",
         id: path[2],
         isPurchased: false,
         isPacked: false,
@@ -31,6 +31,27 @@ const changeItemExistence = async (path, push) => {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ push, item, path }),
+    })
+    if (!res.ok) {
+        console.log("HTTP-Error: " + res.status);
+    }
+    return item;
+}
+
+const addIndexedItem =  async (path, index) => {
+    const item = {
+        name: "",
+        id: path[2],
+        isPurchased: false,
+        isPacked: false,
+        quantity: 1,
+    }
+    const res = await fetch(SERVER_URL + 'api/addIndexedItem', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({index, item, path}),
     })
     if (!res.ok) {
         console.log("HTTP-Error: " + res.status);
@@ -90,4 +111,5 @@ export {
     changeCategoryExistence,
     getPastelColor,
     initMiddleware,
+    addIndexedItem,
 }

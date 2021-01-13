@@ -1,16 +1,16 @@
 import {
     Checkbox,
     FormControlLabel,
-    FormHelperText,
     TextField,
     IconButton,
     InputAdornment,
-    InputBase,
     makeStyles,
-    Box
+    Box,
+    Input,
 } from '@material-ui/core';
 import { useStickyMongoState } from '../util/customHooks'
 import { DeleteTwoTone } from '@material-ui/icons'
+import { useState } from 'react'
 
 const useStyles = makeStyles(() => ({
     checkboxLeft: {
@@ -21,6 +21,9 @@ const useStyles = makeStyles(() => ({
     },
     normalCheckbox: {
         padding: '4px 6px 4px 10px',
+    },
+    notes: {
+        padding: '3px 0px'
     }
 }));
 
@@ -32,6 +35,7 @@ const Item = ({ item, path, renderPurchased, deleteItem, addIndexed, index }) =>
     const [packed, setPacked, setServerPacked] = useStickyMongoState(path, "isPacked", item.isPacked)
     const [quantity, setQuantity, setServerQuantity] = useStickyMongoState(path, "quantity", item.quantity)
     const [notes, setNotes, setServerNotes] = useStickyMongoState(path, "notes", item.notes);
+    const [showNotes, setShowNotes] = useState(false);
 
     const checkboxes = (
         <>
@@ -63,7 +67,10 @@ const Item = ({ item, path, renderPurchased, deleteItem, addIndexed, index }) =>
         />
     )
     return (
-        <div>
+        <Box 
+            onMouseOver={() => setShowNotes(true)}
+            onMouseLeave={() => setShowNotes(false)}
+        >
             <Box display="flex" maxWidth="100%">
                 <Box width="92%">
                     <FormControlLabel
@@ -73,8 +80,18 @@ const Item = ({ item, path, renderPurchased, deleteItem, addIndexed, index }) =>
                 </Box>
                 <IconButton size="small" onClick={() => deleteItem(path)}><DeleteTwoTone /></IconButton>
             </Box>
-            <FormHelperText>{notes}</FormHelperText>
-        </div>
+            {showNotes || notes ? <Input 
+                size="small" 
+                className={classes.notes}
+                inputProps={{style: {fontSize: 12}}} 
+                value={notes}
+                fullWidth
+                multiline
+                placeholder="Write some notes here!"
+                onChange={e => setNotes(e.target.value)}
+                onBlur={e => setServerNotes(e.target.value)}
+            /> : ""}
+        </Box>
     )
 } 
 export default Item;

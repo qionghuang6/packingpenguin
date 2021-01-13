@@ -3,7 +3,7 @@ import { useStickyMongoState } from '../util/customHooks'
 import { DeleteTwoTone } from '@material-ui/icons'
 
 
-const Item = ({item, path, renderPurchased, deleteItem }) => {
+const Item = ({item, path, renderPurchased, deleteItem, addIndexed, index}) => {
     const [name, setName, setServerName] = useStickyMongoState(path, "name", item.name)
     const [purchased, setPurchased, setServerPurchased] = useStickyMongoState(path, "isPurchased", item.isPurchased)
     const [packed, setPacked, setServerPacked] = useStickyMongoState(path, "isPacked", item.isPacked)
@@ -28,10 +28,11 @@ const Item = ({item, path, renderPurchased, deleteItem }) => {
                         InputProps={{
                             endAdornment: <InputAdornment position="end">{quantity==1 ? "" : " x"+quantity}</InputAdornment>,
                         }}
-                        style = {{width: name.length+2+(quantity==1? 0:2)+"ch" }}
+                        style = {{width: name.length+2+(quantity==1? 0:2)+"ch"}}
                         value = {name}
                         onChange={e => setName(e.target.value)}
                         onBlur={e => setServerName(e.target.value)}
+                        onKeyPress={e=> {if (e.key === 'Enter') addIndexed(index+1)}}
                         />}
             />
             <Button onClick={() => deleteItem(path)}><DeleteTwoTone/></Button>

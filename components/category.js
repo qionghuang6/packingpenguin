@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Box, Button, TextField, Grid } from '@material-ui/core';
 import Item from './item'
-import { changeItemExistence, generateUniqueId } from '../util/utilFunctions'
+import { changeItemExistence, generateUniqueId, addIndexedItem } from '../util/utilFunctions'
 import { useStickyMongoState } from '../util/customHooks'
 import { Delete } from '@material-ui/icons';
 
@@ -25,6 +25,15 @@ const Category = ({path, name: givenName, items: givenItems, renderPurchased, de
         await changeItemExistence(path, false);
         setItems(items.filter((element) => element.id != path[2]));
     }
+
+    const addByEnter = async (index) => {
+        console.log("category is adding an item")
+        const itemPath = path.concat([generateUniqueId()])
+        const newItem = await addIndexedItem(itemPath, index);
+        items.splice(index, 0, newItem)
+        setItems(items.concat())
+    }
+
     //console.log(items)
     return (
         <Grid item xs={12} sm={6} lg={4} xl={3} key={path[1]}>
@@ -35,7 +44,7 @@ const Category = ({path, name: givenName, items: givenItems, renderPurchased, de
                             onChange={e => setName(e.target.value)}
                             onBlur={e => setServerName(e.target.value)}/>
                 <Button onClick={() => delCategory(path)}><Delete/></Button>
-                {items.map(i => <Item key={i.id} path={path.concat([i.id])} item={i} renderPurchased={renderPurchased} deleteItem={deleteItem}/>)}
+                {items.map((i, index) => <Item key={i.id} path={path.concat([i.id])} item={i} renderPurchased={renderPurchased} deleteItem={deleteItem} addIndexed={addByEnter} index={index}/>)}
                 <Button variant="contained" color="secondary" onClick={addItem}>Add Item</Button>
                 <Button variant ="contained"
                         onClick={() => setServerBgColor(PASTELS[Math.floor(Math.random()*PASTELS.length)])}>

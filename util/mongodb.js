@@ -1,5 +1,8 @@
 import { MongoClient } from 'mongodb'
 
+// Code from Next.js MongoDB Example
+// https://github.com/vercel/next.js/blob/canary/examples/with-mongodb/util/mongodb.js
+
 const { MONGODB_URI, MONGODB_DB } = process.env
 
 if (!MONGODB_URI) {
@@ -14,11 +17,6 @@ if (!MONGODB_DB) {
   )
 }
 
-/**
- * Global is used here to maintain a cached connection across hot reloads
- * in development. This prevents connections growing exponentiatlly
- * during API Route usage.
- */
 let cached = global.mongo
 if (!cached) cached = global.mongo = {}
 

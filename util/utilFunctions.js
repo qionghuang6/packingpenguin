@@ -66,10 +66,25 @@ const getPastelColor = () => {
     return PASTELS[Math.floor(Math.random()*PASTELS.length)]
 }
 
+const initMiddleware = (middleware) => {
+    // Function from Next.js examples
+    // https://github.com/vercel/next.js/blob/canary/examples/api-routes-cors/lib/init-middleware.js
+    return (req, res) =>
+      new Promise((resolve, reject) => {
+        middleware(req, res, (result) => {
+          if (result instanceof Error) {
+            return reject(result)
+          }
+          return resolve(result)
+        })
+      })
+  }
+
 export {
     generateUniqueId,
     generateListId,
     changeItemExistence,
     changeCategoryExistence,
     getPastelColor,
+    initMiddleware,
 }

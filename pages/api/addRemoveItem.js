@@ -1,6 +1,15 @@
 import { connectToDatabase } from "../../util/mongodb";
+import Cors from 'cors';
+import { initMiddleware } from "../../util/utilFunctions";
+
+const cors = initMiddleware(
+    Cors({
+        methods: ['POST'],
+    })
+)
 
 export default async (req, res) => {
+    await cors(req, res);
     const {path, item, push} = req.body;
     const [checklistId, categoryId, itemId] = path;
     const { db } = await connectToDatabase();
@@ -26,7 +35,7 @@ export default async (req, res) => {
   export const config = {
     api: {
         bodyParser: {
-            sizeLimit: '2kb',
+            sizeLimit: '5kb',
         },
     },
 }

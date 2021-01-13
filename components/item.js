@@ -37,6 +37,15 @@ const Item = ({ item, path, renderPurchased, deleteItem, addIndexed, index }) =>
     const [notes, setNotes, setServerNotes] = useStickyMongoState(path, "notes", item.notes);
     const [showNotes, setShowNotes] = useState(false);
 
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') addIndexed(index+1)
+    }
+    const handleKeyDown = (e) => {
+        console.log(e.key)
+        if (e.key === 'Backspace' && name.trim() == "") deleteItem(path)
+    }
+
+
     const checkboxes = (
         <>
             {(renderPurchased) ? <Checkbox
@@ -63,7 +72,8 @@ const Item = ({ item, path, renderPurchased, deleteItem, addIndexed, index }) =>
             value={name}
             onChange={e => setName(e.target.value)}
             onBlur={e => setServerName(e.target.value)}
-            onKeyPress={e => { if (e.key === 'Enter') addIndexed(index + 1) }}
+            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyDown}
         />
     )
     return (

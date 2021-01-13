@@ -53,22 +53,23 @@ const usePropertyState = (path, target, initVal) => {
     return [data, setMongoData]
 }
 
-const useChecklist = (checklistId) => {
+const useChecklist = (checklistId, isFromSlug=false) => {
     const [data, setData] = useState(null);
     useEffect(() => {
         async function fetchData() {
             const res = await fetch(SERVER_URL + 'api/getChecklist', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'text/html',
+                    'Content-Type': 'application/json',
                 },
-                body: checklistId,
+                body: JSON.stringify({checklistId, isFromSlug}),
             })
             if (res.ok) {
                 let json = await res.json();
                 setData(json)
             } else {
                 console.log("HTTP-Error: " + res.status);
+                setData('error')
             }
         }
         if(checklistId) fetchData();

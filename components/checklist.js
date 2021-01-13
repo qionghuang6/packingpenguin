@@ -11,6 +11,9 @@ const Checklist = ({ source }) => {
     if (!source) {
         return <Loading />
     }
+    if(source === 'error'){
+        return <Typography variant="h4">404 Checklist Not Found</Typography>
+    }
 
     const {
         name,

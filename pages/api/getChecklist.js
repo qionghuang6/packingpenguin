@@ -11,13 +11,17 @@ const cors = initMiddleware(
 
 export default async (req, res) => {
     await cors(req, res);
-    const checklistId = req.body
+    const { checklistId, isFromSlug } = req.body;
     const { db } = await connectToDatabase();
     const checklists = db.collection("checklists");
 
     const dbRes = await checklists.findOne({ id: checklistId })
     if(dbRes){
         res.json(dbRes);
+        return;
+    }
+    if(isFromSlug || (checklistId && checklistId.length < 6)){
+        res.status(404).end()
         return;
     }
     const defaultChecklist = await checklists.findOne({id: "0"});

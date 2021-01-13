@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 export default function SlugHome() {
     const router = useRouter()
     const { slug } = router.query
-    const list = useChecklist(slug);
+    const list = useChecklist(slug, true);
     return (
         <>
             <TopBar />

@@ -20,8 +20,8 @@ const Sharelink = ({checklistId}) =>{
     const classes = useStyles();
     const shareUrl = `${SERVER_URL}${checklistId}`.replace('https://', '').replace('http://', '');
     const [textValue, changeText] = useState(shareUrl);
-    const matches = useMediaQuery('(min-width:430px)');
-    const textBoxWidth = matches ? "32ch": "24ch";
+    const matches = useMediaQuery('(min-width:374px)');
+    const textBoxWidth = matches ? "34ch": "24ch";
     const copyButton = (
         <Button 
             className={classes.iconButton}

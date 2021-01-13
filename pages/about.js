@@ -10,7 +10,7 @@ const About = () => {
                     <Grid item xs={12} sm={4}>
                         <Typography variant="h3" align="center">About Us</Typography>
                         <Box m={3}>
-                            <Typography variant="h5">Packing Penguin was built by <Link href="http://qiongzhouh.com">Qiong Zhou Huang</Link> and <Link href="https://github.com/TarzanRoboticsMan">Coby Sontag</Link> with help from Endar Li, Sam Belliveau, and Michelle Zhang.</Typography>
+                            <Typography variant="h5">Packing Penguin was built by <Link href="http://qiongzhouh.com">Qiong Zhou Huang</Link> and <Link href="http://cobysontag.com">Coby Sontag</Link> with help from Endar Li, Sam Belliveau, and Michelle Zhang.</Typography>
                             <br/>
                             <Typography variant="h5">Started as a tool to help us pack for moving on campus next semester, we hope that Packing Penguin can make your packing experience easier and more organized.</Typography>
                         </Box>

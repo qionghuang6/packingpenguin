@@ -27,7 +27,7 @@ const TopBar = () => {
             <AppBar position="static" className={classes.headBar}>
                 <Typography variant={typoVariants[0]}>Packing Penguin</Typography>
                 <Typography variant={typoVariants[1]}>
-                    A project by <Link href="http://qiongzhouh.com" color="inherit">Qiong Huang</Link> and Coby Sontag
+                    A project by <Link href="http://qiongzhouh.com" color="inherit">Qiong Huang</Link> and <Link href="http://cobysontag.com" color="inherit">Coby Sontag</Link>
                  </Typography>
             </AppBar>
         </>

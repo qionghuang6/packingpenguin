@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { generateListId } from "./utilFunctions"
 
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 
@@ -54,29 +53,23 @@ const usePropertyState = (path, target, initVal) => {
     return [data, setMongoData]
 }
 
-const useChecklist = () => {
-    const [checklistId, setChecklistId] = useState(null);
+const useChecklist = (checklistId, isFromSlug=false) => {
     const [data, setData] = useState(null);
     useEffect(() => {
-        if (typeof window !== "undefined") {
-            if(localStorage.getItem('checklistId') == null){
-              localStorage.setItem('checklistId', generateListId())
-            }
-            setChecklistId(localStorage.getItem('checklistId'))
-        }
         async function fetchData() {
             const res = await fetch(SERVER_URL + 'api/getChecklist', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'text/html',
+                    'Content-Type': 'application/json',
                 },
-                body: checklistId,
+                body: JSON.stringify({checklistId, isFromSlug}),
             })
             if (res.ok) {
                 let json = await res.json();
                 setData(json)
             } else {
                 console.log("HTTP-Error: " + res.status);
+                setData('error')
             }
         }
         if(checklistId) fetchData();

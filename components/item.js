@@ -1,4 +1,12 @@
-import { Checkbox, FormControlLabel, FormHelperText, TextField, Button, InputAdornment, InputBase} from '@material-ui/core';
+import { Checkbox, 
+    FormControlLabel, 
+    FormHelperText, 
+    TextField, 
+    Button, 
+    InputAdornment, 
+    InputBase, 
+    Box 
+} from '@material-ui/core';
 import { useStickyMongoState } from '../util/customHooks'
 import { DeleteTwoTone } from '@material-ui/icons'
 
@@ -14,28 +22,32 @@ const Item = ({item, path, renderPurchased, deleteItem, addIndexed, index}) => {
     return (
         <div>
             {/* <p>{JSON.stringify(path)}</p> */}
-            {(renderPurchased) ? <Checkbox 
-                disabled={!renderPurchased} 
-                checked={purchased} 
-                onChange={(e) => setServerPurchased(e.target.checked)}
-            /> : ""}
-            <FormControlLabel
-                control={<Checkbox
-                    checked={packed}
-                    onChange={(e) => setServerPacked(e.target.checked)}
-                    />}
-                    label={<TextField 
-                        InputProps={{
-                            endAdornment: <InputAdornment position="end">{quantity==1 ? "" : " x"+quantity}</InputAdornment>,
-                        }}
-                        style = {{width: name.length+2+(quantity==1? 0:2)+"ch"}}
-                        value = {name}
-                        onChange={e => setName(e.target.value)}
-                        onBlur={e => setServerName(e.target.value)}
-                        onKeyPress={e=> {if (e.key === 'Enter') addIndexed(index+1)}}
-                        />}
-            />
-            <Button onClick={() => deleteItem(path)}><DeleteTwoTone/></Button>
+            <Box display="flex" maxWidth="100%">
+                <Box width="86%">
+                {(renderPurchased) ? <Checkbox 
+                    disabled={!renderPurchased} 
+                    checked={purchased} 
+                    onChange={(e) => setServerPurchased(e.target.checked)}
+                /> : ""}
+                    <FormControlLabel
+                        control={<Checkbox
+                            checked={packed}
+                            onChange={(e) => setServerPacked(e.target.checked)}
+                            />}
+                            label={<TextField 
+                                InputProps={{
+                                    endAdornment: <InputAdornment position="end">{quantity==1 ? "" : " x"+quantity}</InputAdornment>,
+                                }}
+                                style = {{width: name.length+2+(quantity==1? 0:2)+"ch"}}
+                                value = {name}
+                                onChange={e => setName(e.target.value)}
+                                onBlur={e => setServerName(e.target.value)}
+                                onKeyPress={e=> {if (e.key === 'Enter') addIndexed(index+1)}}
+                                />}
+                    />
+                </Box>
+                <Button onClick={() => deleteItem(path)}><DeleteTwoTone/></Button>
+            </Box>
             <FormHelperText>{notes}</FormHelperText>
         </div>
     )

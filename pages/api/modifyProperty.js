@@ -1,10 +1,19 @@
 import { connectToDatabase } from "../../util/mongodb";
+import Cors from 'cors';
+import { initMiddleware } from "../../util/utilFunctions";
+
+const cors = initMiddleware(
+    Cors({
+        methods: ['POST'],
+    })
+)
 
 export default async (req, res) => {
+    await cors(req, res);
     const { path, target, value } = req.body
     const { db } = await connectToDatabase();
     const checklists = db.collection("checklists");
-    const [checklistId, categoryId, itemId]     = path;
+    const [checklistId, categoryId, itemId] = path;
     let result;
 
     if (checklistId.length >= 6) {
@@ -32,3 +41,11 @@ export default async (req, res) => {
     }
     return res.status(405).end('Error modifying property');
 };
+
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: '2kb',
+        },
+    },
+}

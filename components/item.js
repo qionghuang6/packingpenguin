@@ -1,17 +1,32 @@
-import { Checkbox, 
-    FormControlLabel, 
-    FormHelperText, 
-    TextField, 
-    Button, 
-    InputAdornment, 
-    InputBase, 
-    Box 
+import {
+    Checkbox,
+    FormControlLabel,
+    FormHelperText,
+    TextField,
+    IconButton,
+    InputAdornment,
+    InputBase,
+    makeStyles,
+    Box
 } from '@material-ui/core';
 import { useStickyMongoState } from '../util/customHooks'
 import { DeleteTwoTone } from '@material-ui/icons'
 
+const useStyles = makeStyles(() => ({
+    checkboxLeft: {
+        padding: '4px 1px 4px 10px',
+    },
+    checkboxRight: {
+        padding: '4px 6px 4px 2px',
+    },
+    normalCheckbox: {
+        padding: '4px 6px 4px 10px',
+    }
+}));
 
-const Item = ({item, path, renderPurchased, deleteItem, addIndexed, index}) => {
+
+const Item = ({ item, path, renderPurchased, deleteItem, addIndexed, index }) => {
+    const classes = useStyles();
     const [name, setName, setServerName] = useStickyMongoState(path, "name", item.name)
     const [purchased, setPurchased, setServerPurchased] = useStickyMongoState(path, "isPurchased", item.isPurchased)
     const [packed, setPacked, setServerPacked] = useStickyMongoState(path, "isPacked", item.isPacked)
@@ -28,41 +43,51 @@ const Item = ({item, path, renderPurchased, deleteItem, addIndexed, index}) => {
         if (e.key === 'Backspace' && name.trim() == "") deleteItem(path)
     }
 
+
+    const checkboxes = (
+        <>
+            {(renderPurchased) ? <Checkbox
+                className={classes.checkboxLeft}
+                checked={purchased}
+                onChange={(e) => setServerPurchased(e.target.checked)}
+            /> : ""}
+            <Checkbox
+                checked={packed}
+                className={renderPurchased ? classes.checkboxRight : classes.normalCheckbox}
+                onChange={(e) => setServerPacked(e.target.checked)}
+            />
+        </>
+    )
+
+    const itemTextField = (
+        <TextField
+            InputProps={{
+                endAdornment: <InputAdornment position="end">{quantity == 1 ? "" : " x" + quantity}</InputAdornment>,
+            }}
+            placeholder="New Item"
+            style={{ maxLength: 32, 
+                width: Math.max(10, name.length + 2 + (quantity == 1 ? 0 : 2)) + "ch"}}
+            value={name}
+            onChange={e => setName(e.target.value)}
+            onBlur={e => setServerName(e.target.value)}
+            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyDown}
+        />
+    )
     return (
         <div>
-            {/* <p>{JSON.stringify(path)}</p> */}
             <Box display="flex" maxWidth="100%">
-                <Box width="86%">
-                {(renderPurchased) ? <Checkbox 
-                    disabled={!renderPurchased} 
-                    checked={purchased} 
-                    onChange={(e) => setServerPurchased(e.target.checked)}
-                /> : ""}
+                <Box width="92%">
                     <FormControlLabel
-                        control={<Checkbox
-                            checked={packed}
-                            onChange={(e) => setServerPacked(e.target.checked)}
-                            />}
-                            label={<TextField 
-                                InputProps={{
-                                    endAdornment: <InputAdornment position="end">{quantity==1 ? "" : " x"+quantity}</InputAdornment>,
-                                }}
-                                placeholder="New Item"
-                                style = {{width: Math.max(10, name.length+2+(quantity==1? 0:2))+"ch"}}
-                                value = {name}
-                                onChange={e => setName(e.target.value)}
-                                onBlur={e => setServerName(e.target.value)}
-                                onKeyPress={handleKeyPress}
-                                onKeyDown={handleKeyDown}
-                                />}
+                        control={checkboxes}
+                        label={itemTextField}
                     />
                 </Box>
-                <Button onClick={() => deleteItem(path)}><DeleteTwoTone/></Button>
+                <IconButton size="small" onClick={() => deleteItem(path)}><DeleteTwoTone /></IconButton>
             </Box>
             <FormHelperText>{notes}</FormHelperText>
         </div>
     )
-} //<TextField value={notes} onChange={(e) => setNotes(e.target.value)}/>
-//name + (quantity==1 ? "" : " x"+quantity)
+} 
 export default Item;
 

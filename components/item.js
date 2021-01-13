@@ -38,7 +38,8 @@ const Item = ({item, path, renderPurchased, deleteItem, addIndexed, index}) => {
                                 InputProps={{
                                     endAdornment: <InputAdornment position="end">{quantity==1 ? "" : " x"+quantity}</InputAdornment>,
                                 }}
-                                style = {{width: name.length+2+(quantity==1? 0:2)+"ch"}}
+                                placeholder="New Item"
+                                style = {{width: Math.max(10, name.length+2+(quantity==1? 0:2))+"ch"}}
                                 value = {name}
                                 onChange={e => setName(e.target.value)}
                                 onBlur={e => setServerName(e.target.value)}

@@ -18,7 +18,7 @@ const generateListId = generateId(9);
 // push set to true means add item, push set to false means delete item
 const changeItemExistence = async (path, push) => {
     const defaultItem = {
-        name: "New Item",
+        name: "",
         id: path[2],
         isPurchased: false,
         isPacked: false,

@@ -10,12 +10,14 @@ const Checklist = ({source}) => {
     if (!source) {
         return <Loading/>
     }
+
     const {
         name,
         categories: givenCategories,
         id: checklistId,
         renderPurchased,
     } = source;
+
     //we use sticky states but update the server anyway for checklist wide changes
     const [checklistName, setChecklistName, setServerChecklistName] = useStickyMongoState([checklistId], "name", name);
     const [renderPurchasedCheck, setRenderPurchased, setServerRenderPurchased] = useStickyMongoState([checklistId], "renderPurchased", renderPurchased);
@@ -31,7 +33,7 @@ const Checklist = ({source}) => {
         await changeCategoryExistence(path, false);
         setCategories(categories.filter((element) => element.id != path[1]));
     }
-    // console.log(source);
+    
     return (
         <Box m={2}>
             <Grid container justify="space-between">

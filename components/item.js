@@ -22,7 +22,7 @@ const Item = ({item, path, renderPurchased, deleteItem }) => {
     return (
         <div>
             {/* <p>{JSON.stringify(path)}</p> */}
-            <Box display="flex">
+            <Box display="flex" maxWidth="100%">
                 <Box width="86%">
                 {(renderPurchased) ? <Checkbox 
                     disabled={!renderPurchased} 

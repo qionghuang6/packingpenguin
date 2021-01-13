@@ -24,13 +24,13 @@ const changeItemExistence = async (path, push) => {
         isPacked: false,
         quantity: 1,
     }
-    const item = push ? defaultItem: null;
+    const item = push ? defaultItem : null;
     const res = await fetch(SERVER_URL + 'api/addRemoveItem', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({push, item, path}),
+        body: JSON.stringify({ push, item, path }),
     })
     if (!res.ok) {
         console.log("HTTP-Error: " + res.status);
@@ -45,13 +45,13 @@ const changeCategoryExistence = async (path, push) => {
         color: getPastelColor(),
         items: [],
     }
-    const category = push ? defaultCategory: null;
+    const category = push ? defaultCategory : null;
     const res = await fetch(SERVER_URL + 'api/addRemoveCategory', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({push, category, path}),
+        body: JSON.stringify({ push, category, path }),
     })
     if (!res.ok) {
         console.log("HTTP-Error: " + res.status);
@@ -59,26 +59,29 @@ const changeCategoryExistence = async (path, push) => {
     return defaultCategory;
 }
 
-const PASTELS = ['#CCD4BF', '#E7CBA9', '#EEBAB2', '#A1CDCE', '#FFCCF9', 
-                '#e8d6cf', '#F6ecf5', '#f6f6EB', '#C7CEEA', '#C4FAF8'];
+const PASTELS = ["#FFB5E8", "#B28DFF", "#DCD3FF", "#AFF8DB", "#BFFCC6",
+    "#FFC9DE", "#FF9CEE", "#C5A3FF", "#A79AFF", "#C4FAF8", "#DBFFD6",
+    "#FFCCF9", "#B5B9FF", "#85E3FF", "#F3FFE3", "#FFBEBC", "#FCC2FF",
+    "#ECD4FF", "#97A2FF", "#ACE7FF", "#E7FFAC", "#FFCBC1", "#F6A6FF",
+    "#FBE4FF", "#AFCBFF", "#6EB5FF", "#FFFFD1", "#FFF5BA"];
 
 const getPastelColor = () => {
-    return PASTELS[Math.floor(Math.random()*PASTELS.length)]
+    return PASTELS[Math.floor(Math.random() * PASTELS.length)]
 }
 
 const initMiddleware = (middleware) => {
     // Function from Next.js examples
     // https://github.com/vercel/next.js/blob/canary/examples/api-routes-cors/lib/init-middleware.js
     return (req, res) =>
-      new Promise((resolve, reject) => {
-        middleware(req, res, (result) => {
-          if (result instanceof Error) {
-            return reject(result)
-          }
-          return resolve(result)
+        new Promise((resolve, reject) => {
+            middleware(req, res, (result) => {
+                if (result instanceof Error) {
+                    return reject(result)
+                }
+                return resolve(result)
+            })
         })
-      })
-  }
+}
 
 export {
     generateUniqueId,

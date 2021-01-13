@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TextField, Button, Paper } from '@material-ui/core'
+import { TextField, Button, Paper, useMediaQuery } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 
@@ -10,7 +10,6 @@ const useStyles = makeStyles(() => ({
       padding: '2px 4px',
       display: 'flex',
       alignItems: 'center',
-      width: 400,
     },
     iconButton: {
       padding: 8,
@@ -21,7 +20,8 @@ const Sharelink = ({checklistId}) =>{
     const classes = useStyles();
     const shareUrl = `${SERVER_URL}${checklistId}`.replace('https://', '').replace('http://', '');
     const [textValue, changeText] = useState(shareUrl);
-
+    const matches = useMediaQuery('(min-width:430px)');
+    const textBoxWidth = matches ? "32ch": "24ch";
     const copyButton = (
         <Button 
             className={classes.iconButton}
@@ -34,12 +34,12 @@ const Sharelink = ({checklistId}) =>{
             ><FileCopyOutlinedIcon/>
         </Button>
     )
-
+    console.log(textBoxWidth);
     return (
         <Paper elevation={0} className={classes.root}>
             <TextField
                 label="Share Link for Editing"
-                style = {{width: "100%", maxWidth: "36ch"}}
+                style = {{width: textBoxWidth }}
                 value={textValue}
                 variant="outlined"
                 margin="dense"

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Checkbox, FormControlLabel, Box, Button, TextField, Grid, Typography } from '@material-ui/core';
+import { Checkbox, FormControlLabel, Box, Button, TextField, Grid, Typography, Switch } from '@material-ui/core';
 import { changeCategoryExistence, generateUniqueId } from '../util/utilFunctions'
 import Category from './category'
 import Sharelink from './sharelink'
@@ -54,10 +54,10 @@ const Checklist = ({ source }) => {
                 <Grid item><Sharelink checklistId={checklistId} /></Grid>
             </Grid>
             <FormControlLabel
-                control={<Checkbox
+                control={<Switch
                     checked={renderPurchasedCheck}
                     onChange={(e) => setServerRenderPurchased(e.target.checked)} />}
-                label='Show "purchased" column'
+                label='Show second column'
             />
             <Grid container justify="flex-start" spacing={3}>
                 {categories.map(c =>

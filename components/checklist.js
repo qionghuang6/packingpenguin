@@ -1,15 +1,12 @@
 import { useState } from 'react'
-import { 
-    FormControlLabel, Box, Button, TextField, Grid, Typography, Switch,
-    Menu, MenuItem, Icon, 
-    } from '@material-ui/core';
+import { FormControlLabel, Box, Button, TextField, Grid, Typography, Switch } from '@material-ui/core';
 import { changeCategoryExistence, generateUniqueId, clearChecklist } from '../util/utilFunctions'
 import Category from './category'
 import Sharelink from './sharelink'
 import { useStickyMongoState } from '../util/customHooks';
-import { Add, MoreVert } from '@material-ui/icons';
+import { Add } from '@material-ui/icons';
 import Loading from './loading.js'
-import ClearChecklistButton from './clearChecklistButton';
+import ClearChecklistButton from './buttons/clearChecklistButton';
 
 const Checklist = ({ source }) => {
     if (!source) {

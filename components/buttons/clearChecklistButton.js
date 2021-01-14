@@ -8,7 +8,7 @@ import {
     Box,
 } from '@material-ui/core';
 import { useState } from 'react';
-import { clearChecklist } from '../util/utilFunctions'
+import { clearChecklist } from '../../util/utilFunctions'
 
 //https://material-ui.com/components/dialogs/
 const ClearChecklistButton = ({ checklistId, setCategories }) => {

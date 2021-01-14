@@ -5,16 +5,21 @@ import TopBar from '../components/topbar';
 import { generateListId } from '../util/utilFunctions';
 
 export default function Home() {
-  const [checklistId, setChecklistId] = useState(null);
+  const [setChecklistId, checklistId, list] = useChecklist();
 
   if (typeof window !== "undefined" && !checklistId) {
-    if(localStorage.getItem('checklistId') == null){
-      localStorage.setItem('checklistId', generateListId())
+    const localLists = localStorage.getItem('checklistId')
+    console.log(localLists);
+    if( localLists == null){
+      localStorage.setItem('checklistId', JSON.stringify([generateListId()]));
+
+    } else if(!localLists.includes('[')){
+      //For compatability with old checklistIds
+      localStorage.setItem('checklistId', JSON.stringify([localLists]));
     }
-    setChecklistId(localStorage.getItem('checklistId'))
+    setChecklistId(JSON.parse(localStorage.getItem('checklistId'))[0])
   }
 
-  const list = useChecklist(checklistId);
   return (
     <>
       <TopBar/>

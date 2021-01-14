@@ -118,6 +118,28 @@ const initMiddleware = (middleware) => {
         })
 }
 
+const getCheckListName = async (checklistId) => {
+    const res = await fetch(SERVER_URL + 'api/getChecklist', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({checklistId, isFromSlug: true}),
+    })
+    const ret = await res.json();
+    return ret.name;
+}
+
+const setPrimaryChecklist = (checklistId) => {
+    const localLists = JSON.parse(localStorage.getItem('checklistId'));
+    const index = array.indexOf(checklistId);
+    if (index > -1) {
+        localLists.splice(index, 1);
+    }
+    localLists.unshift(checklistId);
+    localStorage.setItem('checklistId', localLists)
+}
+
 export {
     generateUniqueId,
     generateListId,
@@ -127,4 +149,6 @@ export {
     initMiddleware,
     addIndexedItem,
     clearChecklist,
+    getCheckListName,
+    setPrimaryChecklist,
 }

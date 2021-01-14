@@ -53,8 +53,9 @@ const usePropertyState = (path, target, initVal) => {
     return [data, setMongoData]
 }
 
-const useChecklist = (checklistId, isFromSlug=false) => {
+const useChecklist = (isFromSlug=false) => {
     const [data, setData] = useState(null);
+    const [checklistId, setChecklistId] = useState(null);
     useEffect(() => {
         async function fetchData() {
             const res = await fetch(SERVER_URL + 'api/getChecklist', {
@@ -75,7 +76,7 @@ const useChecklist = (checklistId, isFromSlug=false) => {
         if(checklistId) fetchData();
     }, [checklistId]);
     // console.log(data);
-    return data;
+    return [setChecklistId, checklistId, data];
 };
 
 export {

@@ -6,7 +6,20 @@ import { useRouter } from 'next/router'
 export default function SlugHome() {
     const router = useRouter()
     const { slug } = router.query
-    const list = useChecklist(slug, true);
+    const [setChecklistId, checklistId, list] = useChecklist(true);
+
+    if(!checklistId && slug){
+        setChecklistId(slug);
+    }
+    if (list && typeof window !== "undefined") {
+        let checklistIds = JSON.parse(localStorage.getItem('checklistId'))
+        if (!checklistIds.includes(slug)){
+            checklistIds = checklistIds.concat(slug)
+        }
+        console.log(checklistIds)
+        localStorage.setItem('checklistId', JSON.stringify(checklistIds));
+      }
+
     return (
         <>
             <TopBar />

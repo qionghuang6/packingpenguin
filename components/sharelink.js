@@ -34,7 +34,7 @@ const Sharelink = ({checklistId}) =>{
             ><FileCopyOutlinedIcon/>
         </Button>
     )
-    console.log(textBoxWidth);
+    // console.log(textBoxWidth);
     return (
         <Paper elevation={0} className={classes.root}>
             <TextField

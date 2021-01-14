@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Menu, MenuItem, IconButton } from '@material-ui/core';
-import { MoreVert } from '@material-ui/icons';
+import { MoreVert, Add } from '@material-ui/icons';
 import { setPrimaryChecklist, getChecklistName } from '../../util/utilFunctions'
 
 const MoreChecklistsButton = ({ currentChecklistId, setChecklistId }) => {
@@ -52,6 +52,9 @@ const MoreChecklistsButton = ({ currentChecklistId, setChecklistId }) => {
                         </MenuItem>
                     )
                 })}
+                <MenuItem key={"addNew"} >
+                            <Add/> New Checklist
+                </MenuItem>
             </Menu>
         </div>
     )

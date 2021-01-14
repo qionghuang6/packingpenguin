@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Checkbox, FormControlLabel, Box, Button, TextField, Grid, Typography, Switch } from '@material-ui/core';
-import { changeCategoryExistence, generateUniqueId } from '../util/utilFunctions'
+import { changeCategoryExistence, generateUniqueId, clearChecklist } from '../util/utilFunctions'
 import Category from './category'
 import Sharelink from './sharelink'
 import { useStickyMongoState } from '../util/customHooks';
@@ -39,8 +39,17 @@ const Checklist = ({ source }) => {
         setCategories(categories.filter((element) => element.id != path[1]));
     }
 
+    const deleteAllCategories = async () => {
+        await clearChecklist(checklistId)
+        setCategories([])
+    }
+
     return (
         <Box m={2}>
+            <TextField
+                value="suicide"
+                onClick={deleteAllCategories}
+            />
             <Grid container justify="space-between">
                 <Grid item>
                     <TextField

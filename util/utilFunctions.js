@@ -80,6 +80,20 @@ const changeCategoryExistence = async (path, push) => {
     return defaultCategory;
 }
 
+const clearChecklist = async (checklistId) => {
+    const res = await fetch(SERVER_URL + 'api/clearChecklist', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ checklistId }),
+    })
+    if (!res.ok) {
+        console.log("HTTP-Error: " + res.status);
+    }
+    return;
+}
+
 const PASTELS = ["#FFB5E8", "#B28DFF", "#DCD3FF", "#AFF8DB", "#BFFCC6",
     "#FFC9DE", "#FF9CEE", "#C5A3FF", "#A79AFF", "#C4FAF8", "#DBFFD6",
     "#FFCCF9", "#B5B9FF", "#85E3FF", "#F3FFE3", "#FFBEBC", "#FCC2FF",
@@ -112,4 +126,5 @@ export {
     getPastelColor,
     initMiddleware,
     addIndexedItem,
+    clearChecklist,
 }

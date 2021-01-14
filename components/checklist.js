@@ -58,8 +58,15 @@ const Checklist = ({ source }) => {
                     />
                 </Grid>
                 <Grid item>
-                    <ClearChecklistButton checklistId={checklistId}/>
-                    <Sharelink checklistId={checklistId} />
+                    <Grid container>
+                        <Grid item>
+                            <ClearChecklistButton 
+                                checklistId={checklistId}
+                                setCategories={setCategories}
+                            />
+                        </Grid>
+                        <Grid item><Sharelink checklistId={checklistId} /></Grid>
+                    </Grid>
                 </Grid>
             </Grid>
             <FormControlLabel

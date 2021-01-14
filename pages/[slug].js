@@ -13,6 +13,9 @@ export default function SlugHome() {
     }
     if (list && typeof window !== "undefined") {
         let checklistIds = JSON.parse(localStorage.getItem('checklistId'))
+        if (!Array.isArray(checklistIds)){
+            checklistIds = [];
+        }
         if (!checklistIds.includes(slug)){
             checklistIds = checklistIds.concat(slug)
         }

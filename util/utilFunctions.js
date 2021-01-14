@@ -132,7 +132,7 @@ const getChecklistName = async (checklistId) => {
 
 const setPrimaryChecklist = (checklistId) => {
     const localLists = JSON.parse(localStorage.getItem('checklistId'));
-    const index = array.indexOf(checklistId);
+    const index = localLists.indexOf(checklistId);
     if (index > -1) {
         localLists.splice(index, 1);
     }

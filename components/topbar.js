@@ -26,10 +26,10 @@ const TopBar = () => {
             <AppBar position="static" className={classes.headBar}>
                 <Grid container justify="space-between">
                     <Grid item>
-                <Link href="/" color="inherit"><Typography variant={typoVariants[0]}>Packing Penguin</Typography></Link>
-                <Link href="/about" color="inherit"><Typography variant={typoVariants[1]}>
-                    A project by Qiong Zhou Huang and Coby Sontag
-                </Typography></Link>
+                <Link href="/" color="inherit" underline="none"><Typography variant={typoVariants[0]}>Packing Penguin</Typography></Link>
+                <Typography variant={typoVariants[1]}>
+                    A project by <Link href="/about" color="inherit">Qiong Zhou Huang</Link> and <Link href="/about" color="inherit">Coby Sontag</Link>
+                </Typography>
                 </Grid>
                 <Grid item hidden={!matches}>
                     <Box m={2}>

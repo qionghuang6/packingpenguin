@@ -27,7 +27,6 @@ const useStickyMongoState = (path, target, initVal) => {
 
 const usePropertyState = (path, target, initVal) => {
     const [data, setData] = useState(initVal)
-    //console.log(data)
     const route = SERVER_URL + 'api/modifyProperty';
     const setMongoData = e => {
         const modificationObj = {

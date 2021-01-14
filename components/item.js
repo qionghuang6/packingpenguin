@@ -41,7 +41,6 @@ const Item = ({ item, path, renderPurchased, deleteItem, addIndexed, index }) =>
         if (e.key === 'Enter') addIndexed(index+1)
     }
     const handleKeyDown = (e) => {
-        console.log(e.key)
         if (e.key === 'Backspace' && name.trim() == "") deleteItem(path)
     }
 

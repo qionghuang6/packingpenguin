@@ -9,7 +9,6 @@ export default function Home() {
 
   if (typeof window !== "undefined" && !checklistId) {
     const localLists = localStorage.getItem('checklistId')
-    console.log(localLists);
     if( localLists == null){
       localStorage.setItem('checklistId', JSON.stringify([generateListId()]));
 
@@ -23,7 +22,7 @@ export default function Home() {
   return (
     <>
       <TopBar/>
-      <Checklist source={list} setChecklistId={setChecklistId}/>
+      <Checklist key={JSON.stringify(list)} source={list} setChecklistId={setChecklistId}/>
     </>
   )
 }

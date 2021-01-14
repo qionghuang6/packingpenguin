@@ -11,7 +11,7 @@ export default function SlugHome() {
     if(!checklistId && slug){
         setChecklistId(slug);
     }
-    if (list && typeof window !== "undefined") {
+    if (list != null && list != 'error' && typeof window !== "undefined") {
         let checklistIds = JSON.parse(localStorage.getItem('checklistId'))
         if (!Array.isArray(checklistIds)){
             checklistIds = [];
@@ -19,7 +19,6 @@ export default function SlugHome() {
         if (!checklistIds.includes(slug)){
             checklistIds = checklistIds.concat(slug)
         }
-        console.log(checklistIds)
         localStorage.setItem('checklistId', JSON.stringify(checklistIds));
       }
 

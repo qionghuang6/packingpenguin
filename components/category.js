@@ -30,8 +30,6 @@ const Category = ({ path, name: givenName, items: givenItems, renderPurchased, d
         items.splice(index, 0, newItem)
         setItems(items.concat())
     }
-
-    //console.log(items)
     return (
         <Grid item xs={12} md={6} lg={4} xl={3} key={path[1]}>
             <Box m={0} p={2} bgcolor={bgColor} boxShadow={5}>

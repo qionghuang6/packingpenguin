@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { FormControlLabel, Box, Button, TextField, Grid, Typography, Switch } from '@material-ui/core';
-import { changeCategoryExistence, generateUniqueId, getChecklistName } from '../util/utilFunctions'
+import { changeCategoryExistence, generateUniqueId } from '../util/utilFunctions'
 import Category from './category'
 import Sharelink from './sharelink'
 import { useStickyMongoState } from '../util/customHooks';
@@ -10,10 +10,11 @@ import ClearChecklistButton from './buttons/clearChecklistButton';
 import MoreChecklistsButton from './buttons/moreChecklistsButton';
 
 const Checklist = ({ source, setChecklistId }) => {
+    //console.log('RERENDERING CHECKLIST:', source)
     if (!source) {
         return <Loading />
     }
-    if(source === 'error'){
+    if (source === 'error') {
         return <Typography variant="h4">404 Checklist Not Found</Typography>
     }
 
@@ -40,33 +41,33 @@ const Checklist = ({ source, setChecklistId }) => {
         setCategories(categories.filter((element) => element.id != path[1]));
     }
 
-    const localChecklists = JSON.parse(localStorage.getItem('checklistId')).map( id => (
-        {"id": id, "name": getChecklistName(id)}
-        ))
-    console.log(localChecklists)
     return (
         <Box m={2}>
             <Grid container justify="space-between">
                 <Grid item>
-                    <TextField
-                        multiline
-                        rowsMax={4}
-                        value={checklistName}
-                        inputProps={{ maxLength: 36, style: { fontSize: 36, lineHeight: "100%" } }}
-                        onChange={e => setServerChecklistName(e.target.value)}
-                    />
+                    <Grid container>
+                        <Grid item>
+                            <TextField
+                                multiline
+                                rowsMax={4}
+                                value={checklistName}
+                                inputProps={{ maxLength: 36, style: { fontSize: 36, lineHeight: "100%" } }}
+                                onChange={e => setServerChecklistName(e.target.value)}
+                            />
+                        </Grid>
+                        <Grid item>
+                            <MoreChecklistsButton
+                                currentChecklistId={checklistId}
+                                setChecklistId={setChecklistId}
+                            />
+                        </Grid>
+                    </Grid>
                 </Grid>
-                <Grid item>
-                    <MoreChecklistsButton 
-                        checklists = {localChecklists}
-                        currentChecklistId = {checklistId} 
-                        loadChecklist={setChecklistId}
-                    />
-                </Grid>
+
                 <Grid item>
                     <Grid container>
                         <Grid item>
-                            <ClearChecklistButton 
+                            <ClearChecklistButton
                                 checklistId={checklistId}
                                 setCategories={setCategories}
                             />

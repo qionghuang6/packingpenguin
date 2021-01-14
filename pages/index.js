@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <>
       <TopBar/>
-      <Checklist source={list}/>
+      <Checklist source={list} setChecklistId={setChecklistId}/>
     </>
   )
 }

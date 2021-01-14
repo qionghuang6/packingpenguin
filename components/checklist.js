@@ -1,14 +1,15 @@
 import { useState } from 'react'
 import { FormControlLabel, Box, Button, TextField, Grid, Typography, Switch } from '@material-ui/core';
-import { changeCategoryExistence, generateUniqueId, clearChecklist } from '../util/utilFunctions'
+import { changeCategoryExistence, generateUniqueId, getChecklistName } from '../util/utilFunctions'
 import Category from './category'
 import Sharelink from './sharelink'
 import { useStickyMongoState } from '../util/customHooks';
 import { Add } from '@material-ui/icons';
 import Loading from './loading.js'
 import ClearChecklistButton from './buttons/clearChecklistButton';
+import MoreChecklistsButton from './buttons/moreChecklistsButton';
 
-const Checklist = ({ source }) => {
+const Checklist = ({ source, setChecklistId }) => {
     if (!source) {
         return <Loading />
     }
@@ -39,6 +40,10 @@ const Checklist = ({ source }) => {
         setCategories(categories.filter((element) => element.id != path[1]));
     }
 
+    const localChecklists = JSON.parse(localStorage.getItem('checklistId')).map( id => (
+        {"id": id, "name": getChecklistName(id)}
+        ))
+    console.log(localChecklists)
     return (
         <Box m={2}>
             <Grid container justify="space-between">
@@ -49,6 +54,13 @@ const Checklist = ({ source }) => {
                         value={checklistName}
                         inputProps={{ maxLength: 36, style: { fontSize: 36, lineHeight: "100%" } }}
                         onChange={e => setServerChecklistName(e.target.value)}
+                    />
+                </Grid>
+                <Grid item>
+                    <MoreChecklistsButton 
+                        checklists = {localChecklists}
+                        currentChecklistId = {checklistId} 
+                        loadChecklist={setChecklistId}
                     />
                 </Grid>
                 <Grid item>

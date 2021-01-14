@@ -118,7 +118,7 @@ const initMiddleware = (middleware) => {
         })
 }
 
-const getCheckListName = async (checklistId) => {
+const getChecklistName = async (checklistId) => {
     const res = await fetch(SERVER_URL + 'api/getChecklist', {
         method: 'POST',
         headers: {
@@ -149,6 +149,6 @@ export {
     initMiddleware,
     addIndexedItem,
     clearChecklist,
-    getCheckListName,
+    getChecklistName,
     setPrimaryChecklist,
 }

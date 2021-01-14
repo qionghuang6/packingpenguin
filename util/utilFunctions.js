@@ -119,8 +119,6 @@ const initMiddleware = (middleware) => {
 }
 
 const getChecklistName = async (checklistId) => {
-    console.log('YEEE HAW')
-    console.log(checklistId)
     const res = await fetch(SERVER_URL + 'api/getChecklist', {
         method: 'POST',
         headers: {
@@ -129,7 +127,6 @@ const getChecklistName = async (checklistId) => {
         body: JSON.stringify({checklistId, isFromSlug: true}),
     })
     const ret = await res.json();
-    console.log(ret);
     return ret.name;
 }
 

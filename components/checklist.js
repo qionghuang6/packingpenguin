@@ -10,7 +10,6 @@ import ClearChecklistButton from './buttons/clearChecklistButton';
 import MoreChecklistsButton from './buttons/moreChecklistsButton';
 
 const Checklist = ({ source, setChecklistId }) => {
-    //console.log('RERENDERING CHECKLIST:', source)
     if (!source) {
         return <Loading />
     }
@@ -46,19 +45,19 @@ const Checklist = ({ source, setChecklistId }) => {
             <Grid container justify="space-between">
                 <Grid item>
                     <Grid container>
-                        <Grid item>
+                        <Grid item xs={2} sm={'auto'}>
+                            <MoreChecklistsButton
+                                currentChecklistId={checklistId}
+                                setChecklistId={setChecklistId}
+                            />
+                        </Grid>
+                        <Grid item xs={10} sm={'auto'}>
                             <TextField
                                 multiline
                                 rowsMax={4}
                                 value={checklistName}
                                 inputProps={{ maxLength: 36, style: { fontSize: 36, lineHeight: "100%" } }}
                                 onChange={e => setServerChecklistName(e.target.value)}
-                            />
-                        </Grid>
-                        <Grid item>
-                            <MoreChecklistsButton
-                                currentChecklistId={checklistId}
-                                setChecklistId={setChecklistId}
                             />
                         </Grid>
                     </Grid>

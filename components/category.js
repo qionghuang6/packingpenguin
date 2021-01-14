@@ -24,7 +24,6 @@ const Category = ({ path, name: givenName, items: givenItems, renderPurchased, d
     }
 
     const addByEnter = async (index) => {
-        console.log("category is adding an item")
         const itemPath = path.concat([generateUniqueId()])
         const newItem = await addIndexedItem(itemPath, index);
         items.splice(index, 0, newItem)

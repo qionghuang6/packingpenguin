@@ -15,7 +15,7 @@ export default async (req, res) => {
     const checklists = db.collection("checklists");
     const query = { id: checklistId };
     const operation = {
-        $set: { "categories": {}}
+        $set: { "categories": []}
     };
     let result = null;
     if (checklistId.length >= 6){

@@ -6,6 +6,7 @@ import Sharelink from './sharelink'
 import { useStickyMongoState } from '../util/customHooks';
 import AddIcon from '@material-ui/icons/Add';
 import Loading from './loading.js'
+import ClearChecklistButton from './clearChecklistButton';
 
 const Checklist = ({ source }) => {
     if (!source) {
@@ -51,7 +52,10 @@ const Checklist = ({ source }) => {
                         onChange={e => setServerChecklistName(e.target.value)}
                     />
                 </Grid>
-                <Grid item><Sharelink checklistId={checklistId} /></Grid>
+                <Grid item>
+                    <ClearChecklistButton checklistId={checklistId}/>
+                    <Sharelink checklistId={checklistId} />
+                </Grid>
             </Grid>
             <FormControlLabel
                 control={<Switch

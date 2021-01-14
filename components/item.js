@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => ({
         padding: '4px 6px 4px 10px',
     },
     notes: {
-        padding: '3px 0px'
+        padding: '2px 0px 4px 0px',
     }
 }));
 
@@ -76,6 +76,23 @@ const Item = ({ item, path, renderPurchased, deleteItem, addIndexed, index }) =>
             onKeyDown={handleKeyDown}
         />
     )
+
+    const notesBox = (
+        <>
+            {showNotes || notes ? <Input 
+                size="small" 
+                className={classes.notes}
+                inputProps={{style: {fontSize: 13.5}}} 
+                value={notes}
+                fullWidth
+                multiline
+                placeholder="Write some notes here!"
+                onChange={e => setNotes(e.target.value)}
+                onBlur={e => setServerNotes(e.target.value)}
+            /> : ""}
+        </>
+    )
+
     return (
         <Box 
             onMouseOver={() => setShowNotes(true)}
@@ -90,17 +107,7 @@ const Item = ({ item, path, renderPurchased, deleteItem, addIndexed, index }) =>
                 </Box>
                 <IconButton size="small" onClick={() => deleteItem(path)}><DeleteTwoTone /></IconButton>
             </Box>
-            {showNotes || notes ? <Input 
-                size="small" 
-                className={classes.notes}
-                inputProps={{style: {fontSize: 12}}} 
-                value={notes}
-                fullWidth
-                multiline
-                placeholder="Write some notes here!"
-                onChange={e => setNotes(e.target.value)}
-                onBlur={e => setServerNotes(e.target.value)}
-            /> : ""}
+            {notesBox}
         </Box>
     )
 } 

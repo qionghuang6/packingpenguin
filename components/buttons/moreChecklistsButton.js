@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Menu, MenuItem, Icon } from '@material-ui/core';
 import { MoreVert } from '@material-ui/icons';
 
-const moreChecklistsButton = ({checklists, currentChecklistID, loadChecklist}) => {
+const moreChecklistsButton = ({checklists, currentChecklistID, loadChecklist }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const ITEM_HEIGHT = 48;
@@ -34,8 +34,7 @@ const moreChecklistsButton = ({checklists, currentChecklistID, loadChecklist}) =
                 }}
             >
                 {checklists.map((checklist) => (
-                    const { id, name } = checklist;
-                    <MenuItem key={id} id={id} selected={id === 'currentChecklistID'} onClick={handleClose}>
+                    <MenuItem key={checklist.id} id={checklist.id} selected={checklist.id === currentChecklistID} onClick={handleClose}>
                         {name}
                     </MenuItem>
                 ))}

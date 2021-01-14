@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { AppBar, Typography, Link, useMediaQuery, Grid, Button, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -19,10 +18,6 @@ const TopBar = () => {
     const typoVariants = matches ? ["h2", "h5"]: ["h4", "body2"];
     return (
         <>
-            <Head>
-                <title>Packing Penguin</title>
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
             <AppBar position="static" className={classes.headBar}>
                 <Grid container justify="space-between">
                     <Grid item>

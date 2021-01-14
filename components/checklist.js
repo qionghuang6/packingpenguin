@@ -1,10 +1,13 @@
 import { useState } from 'react'
-import { Checkbox, FormControlLabel, Box, Button, TextField, Grid, Typography, Switch } from '@material-ui/core';
+import { 
+    FormControlLabel, Box, Button, TextField, Grid, Typography, Switch,
+    Menu, MenuItem, Icon, 
+    } from '@material-ui/core';
 import { changeCategoryExistence, generateUniqueId, clearChecklist } from '../util/utilFunctions'
 import Category from './category'
 import Sharelink from './sharelink'
 import { useStickyMongoState } from '../util/customHooks';
-import AddIcon from '@material-ui/icons/Add';
+import { Add, MoreVert } from '@material-ui/icons';
 import Loading from './loading.js'
 import ClearChecklistButton from './clearChecklistButton';
 
@@ -37,11 +40,6 @@ const Checklist = ({ source }) => {
     const delCategory = async (path) => {
         await changeCategoryExistence(path, false);
         setCategories(categories.filter((element) => element.id != path[1]));
-    }
-
-    const deleteAllCategories = async () => {
-        await clearChecklist(checklistId)
-        setCategories([])
     }
 
     return (
@@ -91,7 +89,7 @@ const Checklist = ({ source }) => {
                         size="large"
                         fullWidth={true}
                         onClick={addCategory}>
-                        <AddIcon />
+                        <Add />
                         <h3>Add New Category</h3>
                     </Button>
                 </Grid>

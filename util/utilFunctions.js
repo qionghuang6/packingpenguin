@@ -137,7 +137,7 @@ const setPrimaryChecklist = (checklistId) => {
         localLists.splice(index, 1);
     }
     localLists.unshift(checklistId);
-    localStorage.setItem('checklistId', localLists)
+    localStorage.setItem('checklistId', JSON.stringify(localLists));
 }
 
 export {

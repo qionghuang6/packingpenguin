@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Menu, MenuItem, IconButton } from '@material-ui/core';
-import { MoreVert, Add } from '@material-ui/icons';
-import { setPrimaryChecklist, getChecklistName } from '../../util/utilFunctions'
+import { ViewListRounded, Add } from '@material-ui/icons';
+import { setPrimaryChecklist, getChecklistName, addNewChecklist } from '../../util/utilFunctions'
 
 const MoreChecklistsButton = ({ currentChecklistId, setChecklistId }) => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -12,6 +12,7 @@ const MoreChecklistsButton = ({ currentChecklistId, setChecklistId }) => {
 
     const localIds = JSON.parse(localStorage.getItem('checklistId'));
     const names = localIds.map(id => getChecklistName(id));
+
     if(checklists.length === 0){
         const b = Promise.all(names).then(vals => setChecklists(vals.map((val, i) => {
             return {id: localIds[i], name:val}
@@ -30,7 +31,7 @@ const MoreChecklistsButton = ({ currentChecklistId, setChecklistId }) => {
     return (
         <div>
             <IconButton onClick={e => setAnchorEl(e.currentTarget)}>
-                <MoreVert />
+                <ViewListRounded />
             </IconButton>
             <Menu
                 id="long-menu"
@@ -41,7 +42,7 @@ const MoreChecklistsButton = ({ currentChecklistId, setChecklistId }) => {
                 PaperProps={{
                     style: {
                         maxHeight: ITEM_HEIGHT * 4.5,
-                        width: '20ch',
+                        width: '32ch',
                     },
                 }}
             >
@@ -52,7 +53,11 @@ const MoreChecklistsButton = ({ currentChecklistId, setChecklistId }) => {
                         </MenuItem>
                     )
                 })}
-                <MenuItem key={"addNew"} >
+                <MenuItem key={"addNew"} onClick={() => {
+                        addNewChecklist().then(res => {
+                            setChecklists(checklists.concat(res));
+                    })
+                }}>
                             <Add/> New Checklist
                 </MenuItem>
             </Menu>

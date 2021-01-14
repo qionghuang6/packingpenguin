@@ -140,6 +140,25 @@ const setPrimaryChecklist = (checklistId) => {
     localStorage.setItem('checklistId', JSON.stringify(localLists));
 }
 
+const addNewChecklist = async () => {
+    const newChecklistId = generateListId();
+    const res = await fetch(SERVER_URL + 'api/getChecklist', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({checklistId: newChecklistId, isFromSlug: false}),
+    })
+    if(!res.ok){
+        console.log("Error making new checklist")
+    }
+    let json = await res.json();
+    let checklistIds = JSON.parse(localStorage.getItem('checklistId'))
+    checklistIds = checklistIds.concat(newChecklistId)
+    localStorage.setItem('checklistId', JSON.stringify(checklistIds));
+    return({id: newChecklistId, name: json.name});
+}
+
 export {
     generateUniqueId,
     generateListId,
@@ -151,4 +170,5 @@ export {
     clearChecklist,
     getChecklistName,
     setPrimaryChecklist,
+    addNewChecklist,
 }

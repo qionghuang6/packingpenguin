@@ -49,7 +49,6 @@ const Checklist = ({ source }) => {
             <Grid container justify="space-between">
                 <Grid item>
                     <TextField
-                        title={"ChecklistId: " + checklistId}
                         multiline
                         rowsMax={4}
                         value={checklistName}
@@ -70,6 +69,7 @@ const Checklist = ({ source }) => {
                 </Grid>
             </Grid>
             <FormControlLabel
+                title='e.g. "purchased" and "packed"'
                 control={<Switch
                     checked={renderPurchasedCheck}
                     onChange={(e) => setServerRenderPurchased(e.target.checked)} />}

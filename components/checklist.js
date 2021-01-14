@@ -46,10 +46,6 @@ const Checklist = ({ source }) => {
 
     return (
         <Box m={2}>
-            <TextField
-                value="suicide"
-                onClick={deleteAllCategories}
-            />
             <Grid container justify="space-between">
                 <Grid item>
                     <TextField

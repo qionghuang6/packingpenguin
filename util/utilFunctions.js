@@ -61,7 +61,7 @@ const addIndexedItem =  async (path, index) => {
 
 const changeCategoryExistence = async (path, push) => {
     const defaultCategory = {
-        name: "New Category",
+        name: "",
         id: path[1],
         color: getPastelColor(),
         items: [],

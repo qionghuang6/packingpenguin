@@ -30,8 +30,8 @@ const MoreChecklistsButton = ({ currentChecklistId, setChecklistId }) => {
 
     return (
         <div>
-            <IconButton onClick={e => setAnchorEl(e.currentTarget)}>
-                <ViewListRounded />
+            <IconButton style={{ padding: 6 }} onClick={e => setAnchorEl(e.currentTarget)}>
+                <ViewListRounded style={{ fontSize: 36 }} />
             </IconButton>
             <Menu
                 id="long-menu"

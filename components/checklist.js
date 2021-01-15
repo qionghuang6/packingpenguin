@@ -65,7 +65,7 @@ const Checklist = ({ source, setChecklistId }) => {
 
                 <Grid item>
                     <Grid container>
-                        <Grid item>
+                        <Grid item xs={12} sm={'auto'}>
                             <ClearChecklistButton
                                 checklistId={checklistId}
                                 setCategories={setCategories}

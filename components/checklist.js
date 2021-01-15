@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FormControlLabel, Box, Button, TextField, Grid, Typography, Switch } from '@material-ui/core';
+import { FormControlLabel, Box, Button, TextField, Grid, Typography, Switch, useMediaQuery } from '@material-ui/core';
 import { changeCategoryExistence, generateUniqueId } from '../util/utilFunctions'
 import Category from './category'
 import Sharelink from './sharelink'
@@ -41,11 +41,20 @@ const Checklist = ({ source, setChecklistId }) => {
         setCategories(categories.filter((element) => element.id != path[1]));
     }
 
+    const bigscreen = useMediaQuery('(min-width:450px)');
+    //if big screen, use 36px
+    //else use 1.5*(10/12)/checklist.length vw, which is view-width as a %.
+    //  10/12 is the amount of screen this textbox has (see Grid item xs value)
+    //  1.5 is about how much smaller avg char is than max char
+    //find min against 36px/450px * 100 to make sure your new vw value is never MORE than 36px
+    const dynamicFontSize = bigscreen ? "36px": Math.min(100*36/450, 1.5*100*(10/12)/checklistName.length) + "vw";
+    //console.log(dynamicFontSize)
+
     return (
         <Box m={2}>
             <Grid container justify="space-between">
-                <Grid item>
-                    <Grid container>
+                <Grid item xs={12} sm={'auto'}>
+                    <Grid container alignItems="center" justify="center">
                         <Grid item xs={2} sm={'auto'}>
                             <MoreChecklistsButton
                                 currentChecklistId={checklistId}
@@ -55,9 +64,10 @@ const Checklist = ({ source, setChecklistId }) => {
                         <Grid item xs={10} sm={'auto'}>
                             <TextField
                                 multiline
+                                fullWidth
                                 rowsMax={4}
                                 value={checklistName}
-                                inputProps={{ maxLength: 36, style: { fontSize: 36, lineHeight: "100%" } }}
+                                inputProps={{ maxLength: 36, style: { fontSize: dynamicFontSize, lineHeight: "100%" } }}
                                 onChange={e => setServerChecklistName(e.target.value)}
                             />
                         </Grid>

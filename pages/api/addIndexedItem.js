@@ -12,3 +12,11 @@ export default async (req, res) => {
     const result = await checklists.updateOne(query, operation);
     return res.status(200).end(`Updated ${result.modifiedCount} items`);
   };
+
+  export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: '2kb',
+        },
+    },
+}

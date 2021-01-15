@@ -27,10 +27,10 @@ export default async (req, res) => {
     return res.status(405).end('Unexpected Database Error')
   };
 
-  export const config = {
+export const config = {
     api: {
         bodyParser: {
-            sizeLimit: '5kb',
+            sizeLimit: '2kb',
         },
     },
 }

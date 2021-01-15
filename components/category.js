@@ -34,6 +34,7 @@ const Category = ({ path, name: givenName, items: givenItems, renderPurchased, d
             <Box m={0} p={2} bgcolor={bgColor} boxShadow={5}>
             <Grid container wrap="nowrap">
                 <Grid item xs={10}><TextField
+                    placeholder="New Category"
                     inputProps={{ maxLength: 32, style: {fontSize: 24, maxWidth:"100%"}}}
                     value={name}
                     onChange={e => setName(e.target.value)}

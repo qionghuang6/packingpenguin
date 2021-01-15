@@ -1,7 +1,9 @@
 import {
     Checkbox,
+    FormControl,
     FormControlLabel,
     TextField,
+    Grid,
     IconButton,
     InputAdornment,
     makeStyles,
@@ -14,13 +16,13 @@ import { useState } from 'react'
 
 const useStyles = makeStyles(() => ({
     checkboxLeft: {
-        padding: '4px 1px 4px 10px',
+        padding: '2px 1px 4px 0px',
     },
     checkboxRight: {
-        padding: '4px 6px 4px 2px',
+        padding: '2px 1px 4px 2px',
     },
     normalCheckbox: {
-        padding: '4px 6px 4px 10px',
+        padding: '2px 1px 4px 0px',
     },
     notes: {
         padding: '2px 0px 4px 0px',
@@ -33,12 +35,12 @@ const Item = ({ item, path, renderPurchased, deleteItem, addIndexed, index }) =>
     const [name, setName, setServerName] = useStickyMongoState(path, "name", item.name)
     const [purchased, setPurchased, setServerPurchased] = useStickyMongoState(path, "isPurchased", item.isPurchased)
     const [packed, setPacked, setServerPacked] = useStickyMongoState(path, "isPacked", item.isPacked)
-    const [quantity, setQuantity, setServerQuantity] = useStickyMongoState(path, "quantity", item.quantity)
+    // const [quantity, setQuantity, setServerQuantity] = useStickyMongoState(path, "quantity", item.quantity)
     const [notes, setNotes, setServerNotes] = useStickyMongoState(path, "notes", item.notes);
     const [showNotes, setShowNotes] = useState(false);
 
     const handleKeyPress = (e) => {
-        if (e.key === 'Enter') addIndexed(index+1)
+        if (e.key === 'Enter') addIndexed(index + 1)
     }
     const handleKeyDown = (e) => {
         if (e.key === 'Backspace' && name.trim() == "") deleteItem(path)
@@ -46,7 +48,7 @@ const Item = ({ item, path, renderPurchased, deleteItem, addIndexed, index }) =>
 
 
     const checkboxes = (
-        <>
+        <InputAdornment position="start">
             {(renderPurchased) ? <Checkbox
                 className={classes.checkboxLeft}
                 checked={purchased}
@@ -57,17 +59,24 @@ const Item = ({ item, path, renderPurchased, deleteItem, addIndexed, index }) =>
                 className={renderPurchased ? classes.checkboxRight : classes.normalCheckbox}
                 onChange={(e) => setServerPacked(e.target.checked)}
             />
-        </>
+            </InputAdornment>
+    )
+
+    const deleteButton = (
+        <InputAdornment position="end">
+            <IconButton size="small" onClick={() => deleteItem(path)}>
+                <DeleteTwoTone />
+            </IconButton>
+        </InputAdornment>
     )
 
     const itemTextField = (
         <TextField
-            InputProps={{
-                endAdornment: <InputAdornment position="end">{quantity == 1 ? "" : " x" + quantity}</InputAdornment>,
-            }}
+            InputProps={{ 
+                startAdornment: checkboxes,
+                endAdornment: deleteButton }}
             placeholder="New Item"
-            style={{ maxLength: 32, 
-                width: Math.max(10, name.length + 2 + (quantity == 1 ? 0 : 2)) + "ch"}}
+            fullWidth={true}
             value={name}
             onChange={e => setName(e.target.value)}
             onBlur={e => setServerName(e.target.value)}
@@ -78,10 +87,10 @@ const Item = ({ item, path, renderPurchased, deleteItem, addIndexed, index }) =>
 
     const notesBox = (
         <>
-            {showNotes || notes ? <Input 
-                size="small" 
+            {showNotes || notes ? <Input
+                size="small"
                 className={classes.notes}
-                inputProps={{style: {fontSize: 13.5}}} 
+                inputProps={{ style: { fontSize: 13.5 } }}
                 value={notes}
                 fullWidth
                 multiline
@@ -93,22 +102,14 @@ const Item = ({ item, path, renderPurchased, deleteItem, addIndexed, index }) =>
     )
 
     return (
-        <Box 
+        <Box
             onMouseOver={() => setShowNotes(true)}
             onMouseLeave={() => setShowNotes(false)}
         >
-            <Box display="flex" maxWidth="100%">
-                <Box width="92%">
-                    <FormControlLabel
-                        control={checkboxes}
-                        label={itemTextField}
-                    />
-                </Box>
-                <IconButton size="small" onClick={() => deleteItem(path)}><DeleteTwoTone /></IconButton>
-            </Box>
+            {itemTextField}
             {notesBox}
         </Box>
     )
-} 
+}
 export default Item;
 

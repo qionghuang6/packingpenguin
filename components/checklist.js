@@ -45,9 +45,10 @@ const Checklist = ({ source, setChecklistId }) => {
     //if big screen, use 36px
     //else use 1.5*(10/12)/checklist.length vw, which is view-width as a %.
     //  10/12 is the amount of screen this textbox has (see Grid item xs value)
-    //  1.5 is about how much smaller avg char is than max char
+    //  1.5 is about how much smaller avg char is than max char, so 2.5 is "let 'wwww' overflow so 'little' isnt miniscule"
     //find min against 36px/450px * 100 to make sure your new vw value is never MORE than 36px
-    const dynamicFontSize = bigscreen ? "36px": Math.min(100*36/450, 1.5*100*(10/12)/checklistName.length) + "vw";
+    //find max between length and 32 to make sure its never too small
+    const dynamicFontSize = bigscreen ? "36px": Math.min(100*36/450, 2.5*100*(10/12)/Math.max(checklistName.length, 32)) + "vw";
     //console.log(dynamicFontSize)
 
     return (

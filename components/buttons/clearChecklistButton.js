@@ -6,13 +6,17 @@ import {
     DialogContentText,
     DialogTitle,
     Box,
+    useMediaQuery,
 } from '@material-ui/core';
+import { PhotoSizeSelectSmall } from '@material-ui/icons';
 import { useState } from 'react';
 import { clearChecklist } from '../../util/utilFunctions'
 
 //https://material-ui.com/components/dialogs/
 const ClearChecklistButton = ({ checklistId, setCategories }) => {
     const [open, setOpen] = useState(false);
+    const small = !useMediaQuery('(min-width:450px)')
+    console.log(small)
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -25,7 +29,11 @@ const ClearChecklistButton = ({ checklistId, setCategories }) => {
     return (
         <div>
             <Box m={1.5}>
-                <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+                <Button 
+                    fullWidth={small}
+                    variant="outlined" 
+                    color="primary" 
+                    onClick={handleClickOpen}>
                     Clear Checklist
         </Button>
             </Box>

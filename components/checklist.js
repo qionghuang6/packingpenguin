@@ -6,8 +6,8 @@ import Sharelink from './sharelink'
 import { useStickyMongoState } from '../util/customHooks';
 import { Add } from '@material-ui/icons';
 import Loading from './loading.js'
-import ClearChecklistButton from './buttons/ClearChecklistButton';
-import MoreChecklistsButton from './buttons/MoreChecklistsButton';
+import ClearChecklistButton from './buttons/clearChecklistButton';
+import MoreChecklistsButton from './buttons/moreChecklistsButton';
 import ChecklistDropdown from './buttons/checklistDropdown';
 
 const Checklist = ({ source, setChecklistId }) => {
@@ -76,7 +76,7 @@ const Checklist = ({ source, setChecklistId }) => {
 
                 <Grid item>
                     <Grid container>
-                        <Grid item>
+                        <Grid item xs={12} sm={'auto'}>
                             <ClearChecklistButton
                                 checklistId={checklistId}
                                 setCategories={setCategories}

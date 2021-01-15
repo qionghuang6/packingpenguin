@@ -13,16 +13,19 @@ export default function MyApp(props) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
   }, []);
-
+  const description = "Packing Penguin is the perfect assistant to help you stay organized while packing to move on campus. Organize your items into different categories and checklists and share them across your devices and with your roommates!";
   return (
     <>
       <Head>
         <title>Packing Penguin</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta property="description" content={description}/>
+        <meta property="og:description" content={description}/>
+        <meta property="og:title" content="Packing Penguin" />
+        <meta property="og:url" content="https://packingpenguin.com/" />
+        <meta property="og:image" content="https://packingpenguin.com/ogImg.png" />
       </Head>
       <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        {/* <CssBaseline /> */}
         <Component {...pageProps} />
       </ThemeProvider>
     </>

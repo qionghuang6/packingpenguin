@@ -25,7 +25,7 @@ export default function SlugHome() {
     return (
         <>
             <TopBar />
-            <Checklist source={list}/>
+            <Checklist key={list ? list.id : ""} source={list} setChecklistId={setChecklistId}/>
         </>
     )
 }

@@ -33,7 +33,7 @@ const TopBar = () => {
                 </Grid>
                 <Grid item hidden={!matches}>
                     <Box m={2}>
-                        <Link href='/about'><Button size="large" variant="outlined">About Us</Button></Link>
+                        <Link href='/about' underline="none"><Button size="large" variant="outlined">About Us</Button></Link>
                     </Box>
                 </Grid>
                 </Grid>

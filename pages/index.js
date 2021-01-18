@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <>
       <TopBar/>
-      <Checklist key={JSON.stringify(list)} source={list} setChecklistId={setChecklistId}/>
+      <Checklist key={list ? list.id : ""} source={list} setChecklistId={setChecklistId}/>
     </>
   )
 }

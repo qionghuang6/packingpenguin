@@ -4,12 +4,15 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
     headBar: {
       // Some CSS
-      background: 'linear-gradient(45deg, #539bff 30%, #53ffeb 80%, #ffbd53 80%)', //FE6B8B, FF8E53
+      background: 'linear-gradient(45deg, #4facfe 30%, #00f2fe 80%, #ffbd53 80%)',
       border: 0,
       color: 'white',
       padding: '0 30px',
       boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
     },
+    title: {
+        fontFamily: ['Balsamiq Sans', 'Roboto', 'cursive'].join(','),
+    }
   });
 
 const TopBar = () => {
@@ -21,7 +24,9 @@ const TopBar = () => {
             <AppBar position="static" className={classes.headBar}>
                 <Grid container justify="space-between">
                     <Grid item>
-                <Link href="/" color="inherit" underline="none"><Typography variant={typoVariants[0]}>Packing Penguin</Typography></Link>
+                <Link href="/" color="inherit" underline="none">
+                    <Typography variant={typoVariants[0]} className={classes.title}>Packing Penguin</Typography>
+                </Link>
                 <Typography variant={typoVariants[1]}>
                     A project by <Link href="/about" color="inherit">Qiong Zhou Huang</Link> and <Link href="/about" color="inherit">Coby Sontag</Link>
                 </Typography>

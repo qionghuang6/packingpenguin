@@ -16,7 +16,6 @@ import { clearChecklist } from '../../util/utilFunctions'
 const ClearChecklistButton = ({ checklistId, setCategories }) => {
     const [open, setOpen] = useState(false);
     const small = !useMediaQuery('(min-width:450px)')
-    console.log(small)
 
     const handleClickOpen = () => {
         setOpen(true);

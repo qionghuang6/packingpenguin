@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
     headBar: {
       // Some CSS
-      background: 'linear-gradient(45deg, #4facfe 30%, #00f2fe 80%, #ffbd53 80%)',
+      background: 'linear-gradient(45deg, #4facfe 30%, #00f2fe 80%, #ffbd53 80%)',//FE6B8B, FF8E53
       border: 0,
       color: 'white',
       padding: '0 30px',

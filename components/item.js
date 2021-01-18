@@ -1,6 +1,9 @@
 import {
     Checkbox,
+    FormControl,
+    FormControlLabel,
     TextField,
+    Grid,
     IconButton,
     InputAdornment,
     makeStyles,
@@ -56,7 +59,7 @@ const Item = ({ item, path, renderPurchased, deleteItem, addIndexed, index }) =>
                 className={renderPurchased ? classes.checkboxRight : classes.normalCheckbox}
                 onChange={(e) => setServerPacked(e.target.checked)}
             />
-            </InputAdornment>
+        </InputAdornment>
     )
 
     const deleteButton = (
@@ -69,9 +72,10 @@ const Item = ({ item, path, renderPurchased, deleteItem, addIndexed, index }) =>
 
     const itemTextField = (
         <TextField
-            InputProps={{ 
-                startAdornment: checkboxes,
-                endAdornment: deleteButton }}
+            InputProps={{
+                endAdornment: deleteButton
+            }}
+            onMouseOver={() => setShowNotes(true)}
             placeholder="New Item"
             fullWidth={true}
             value={name}
@@ -100,12 +104,18 @@ const Item = ({ item, path, renderPurchased, deleteItem, addIndexed, index }) =>
 
     return (
         <Box
-            onMouseEnter={() => setShowNotes(true)}
             onMouseLeave={() => setShowNotes(false)}
         >
-            {itemTextField}
-            {notesBox}
-        </Box>
+            <Grid container spacing={0} alignItems="center" wrap="nowrap">
+                <Grid item>
+                    {checkboxes}
+                </Grid>
+                <Grid item xs={10}>
+                    { itemTextField }
+                </Grid>
+            </Grid>
+            { notesBox }
+        </Box >
     )
 }
 export default Item;

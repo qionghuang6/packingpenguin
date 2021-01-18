@@ -110,7 +110,7 @@ const Item = ({ item, path, renderPurchased, deleteItem, addIndexed, index }) =>
                 <Grid item>
                     {checkboxes}
                 </Grid>
-                <Grid item xs={10}>
+                <Grid item xs={11}>
                     { itemTextField }
                 </Grid>
             </Grid>

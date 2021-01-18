@@ -1,9 +1,6 @@
 import {
     Checkbox,
-    FormControl,
-    FormControlLabel,
     TextField,
-    Grid,
     IconButton,
     InputAdornment,
     makeStyles,
@@ -103,7 +100,7 @@ const Item = ({ item, path, renderPurchased, deleteItem, addIndexed, index }) =>
 
     return (
         <Box
-            onMouseOver={() => setShowNotes(true)}
+            onMouseEnter={() => setShowNotes(true)}
             onMouseLeave={() => setShowNotes(false)}
         >
             {itemTextField}
